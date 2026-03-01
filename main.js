@@ -11,13 +11,13 @@ setInterval(rotateTestimonials, 5000);
 
 // Hero Gallery Slider for 1-17.JPG
 const heroSlidesContainer = document.querySelector(".hero-slider .slides");
-const totalHeroImages = 17; // load 1.JPG → 17.JPG
+const totalHeroImages = 17; // load 1.jpg → 17.JPG
 let heroCurrent = 1;
 
 // Dynamically load images
 for (let i = 1; i <= totalHeroImages; i++) {
   const img = document.createElement("img");
-  img.src = `{i}.JPG`; // match uppercase extension
+  img.src = `{i}.jpg`; // match uppercase extension
   if (i === 1) img.classList.add("active");
   heroSlidesContainer.appendChild(img);
 }
@@ -33,3 +33,4 @@ function nextHeroSlide() {
 // Auto-slide every 4 seconds
 
 setInterval(nextHeroSlide, 4000);
+
