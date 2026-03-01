@@ -17,7 +17,7 @@ let heroCurrent = 1;
 // Dynamically load images
 for (let i = 1; i <= totalHeroImages; i++) {
   const img = document.createElement("img");
-  img.src = `images/${i}.JPG`; // match uppercase extension
+  img.src = `{i}.JPG`; // match uppercase extension
   if (i === 1) img.classList.add("active");
   heroSlidesContainer.appendChild(img);
 }
@@ -31,4 +31,5 @@ function nextHeroSlide() {
 }
 
 // Auto-slide every 4 seconds
+
 setInterval(nextHeroSlide, 4000);
