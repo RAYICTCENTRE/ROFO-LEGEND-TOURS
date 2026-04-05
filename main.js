@@ -9,52 +9,63 @@ function rotateTestimonials(){
 }
 setInterval(rotateTestimonials, 5000);
 
-// Hero Gallery Slider for 1 to 23 (supports both .jpg and .jpeg)
+// Hero Gallery Slider for 1 to 23 (supports both .JPG, .JPEG, .jpg, .jpeg)
 const heroSlidesContainer = document.querySelector(".hero-slider .slides");
-const totalHeroImages = 23;
+const totalHeroImages = 23; // load 1 to 23
 let heroCurrent = 1;
-let imagesLoaded = 0;
-const heroImagesArray = [];
 
-// Function to try loading image with multiple extensions
-function tryLoadImage(imgElement, i, extensionIndex) {
-    const extensions = ['JPG', 'JPEG', 'jpg', 'jpeg'];
-    
-    if (extensionIndex >= extensions.length) {
-        // Fallback - no image found
-        imgElement.src = `images/${i}.jpg`;
-        imgElement.classList.add('error-load');
-        return;
+// Helper function to check if image exists
+function imageExists(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+    });
+}
+
+// Dynamically load images with extension detection
+async function loadHeroImages() {
+    for (let i = 1; i <= totalHeroImages; i++) {
+        const img = document.createElement("img");
+        
+        // Try both extensions in order: JPG, JPEG, jpg, jpeg
+        const extensions = ['JPG', 'JPEG', 'jpg', 'jpeg'];
+        let loaded = false;
+        
+        for (let ext of extensions) {
+            const testPath = `images/${i}.${ext}`;
+            const exists = await imageExists(testPath);
+            if (exists) {
+                img.src = testPath;
+                loaded = true;
+                break;
+            }
+        }
+        
+        // Fallback if no image found
+        if (!loaded) {
+            img.src = `images/${i}.jpg`; // default fallback
+            console.warn(`Image ${i} not found as JPG or JPEG`);
+        }
+        
+        if (i === 1) img.classList.add("active");
+        heroSlidesContainer.appendChild(img);
     }
     
-    imgElement.src = `images/${i}.${extensions[extensionIndex]}`;
+    // After loading all images, start the slideshow
+    const heroImages = document.querySelectorAll(".hero-slider .slides img");
     
-    imgElement.onerror = function() {
-        tryLoadImage(imgElement, i, extensionIndex + 1);
-    };
+    function nextHeroSlide() {
+        if (heroImages.length === 0) return;
+        heroImages[heroCurrent - 1].classList.remove("active");
+        heroCurrent = heroCurrent === totalHeroImages ? 1 : heroCurrent + 1;
+        heroImages[heroCurrent - 1].classList.add("active");
+    }
     
-    imgElement.onload = function() {
-        // Successfully loaded
-    };
+    // Auto-slide every 4 seconds
+    setInterval(nextHeroSlide, 4000);
 }
 
-// Dynamically load images
-for (let i = 1; i <= totalHeroImages; i++) {
-    const img = document.createElement("img");
-    tryLoadImage(img, i, 0);
-    if (i === 1) img.classList.add("active");
-    heroSlidesContainer.appendChild(img);
-    heroImagesArray.push(img);
-}
-
-const heroImages = document.querySelectorAll(".hero-slider .slides img");
-
-function nextHeroSlide() {
-  if (heroImages.length === 0) return;
-  heroImages[heroCurrent - 1].classList.remove("active");
-  heroCurrent = heroCurrent === totalHeroImages ? 1 : heroCurrent + 1;
-  heroImages[heroCurrent - 1].classList.add("active");
-}
-
-// Auto-slide every 4 seconds
-setInterval(nextHeroSlide, 4000);
+// Start loading images
+loadHeroImages();
