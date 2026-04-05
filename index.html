@@ -7,159 +7,106 @@
 <meta name="description" content="Luxury and affordable Uganda safaris, gorilla trekking and wildlife adventures.">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-/* ========================
-   Global Styles
-======================== */
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #f5f5f5;
-}
-a { text-decoration: none; color: inherit; }
-h1, h2 { margin: 0 0 10px; }
+body { margin:0; font-family:'Poppins',sans-serif; background:#f5f5f5; }
+a { text-decoration:none; color:inherit; }
+h1,h2 { margin:0 0 10px; }
 
-/* ========================
-   Navigation
-======================== */
+/* Navigation */
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    background: #004d00; /* Dark green */
-    color: #FFD700; /* Golden text */
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 50px;
+  background:#003300; /* Darker green */
+  color:#FFD700;
 }
-nav img { max-height: 50px; }
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-}
-nav ul li a {
-    color: #FFD700;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-nav ul li a:hover { color: #fff; }
+nav img{ max-height:50px; }
+nav ul{ list-style:none; display:flex; gap:25px; }
+nav ul li a{ color:#FFD700; font-weight:500; transition:color 0.3s; }
+nav ul li a:hover{ color:#fff; }
 
-/* ========================
-   Hero Slider
-======================== */
-.hero-slider {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    height: 500px;
-    margin: 20px auto;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    background: #004d00;
+/* Hero Slider */
+.hero-slider{
+  position:relative;
+  width:100%;
+  max-width:1200px;
+  height:500px;
+  margin:20px auto;
+  overflow:hidden;
+  border-radius:10px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+  background:#003300;
 }
-.hero-slider .slides {
-    position: relative;
-    width: 100%;
-    height: 100%;
+.hero-slider .slides{
+  position:relative;
+  width:100%;
+  height:100%;
 }
-.hero-slider .slides img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    z-index: 1;
+.hero-slider .slides img{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 1s ease-in-out;
+  z-index:1;
 }
-.hero-slider .slides img.active {
-    opacity: 1;
-    z-index: 2;
+.hero-slider .slides img.active{
+  opacity:1;
+  z-index:2;
 }
-.hero-text {
-    position: absolute;
-    bottom: 30px;
-    left: 50px;
-    color: #FFD700;
-    max-width: 500px;
-    z-index: 10;
-    background: rgba(0,77,0,0.6);
-    padding: 20px;
-    border-radius: 10px;
+.hero-text{
+  position:absolute;
+  bottom:30px;
+  left:50px;
+  color:#FFD700;
+  max-width:500px;
+  z-index:10;
+  background: rgba(0,51,0,0.6); /* Darker overlay */
+  padding:20px;
+  border-radius:10px;
 }
-.hero-text h1 { font-size: 2.5em; margin-bottom: 10px; }
-.hero-text p { font-size: 1.1em; margin-bottom: 15px; }
-.hero-text .btn {
-    display: inline-block;
-    padding: 10px 25px;
-    background: #FFD700;
-    color: #004d00;
-    font-weight: 600;
-    border-radius: 5px;
-    transition: background 0.3s ease;
+.hero-text h1{ font-size:2.5em; margin-bottom:10px; }
+.hero-text p{ font-size:1.1em; margin-bottom:15px; }
+.hero-text .btn{
+  display:inline-block;
+  padding:10px 25px;
+  background:#FFD700;
+  color:#003300;
+  font-weight:600;
+  border-radius:5px;
+  transition:background 0.3s;
 }
-.hero-text .btn:hover { background: #e6c200; }
+.hero-text .btn:hover{ background:#e6c200; }
 
-/* ========================
-   Testimonials
-======================== */
-.section {
-    max-width: 900px;
-    margin: 50px auto;
-    text-align: center;
-    position: relative;
-    min-height: 200px;
+/* Testimonials */
+.section{ max-width:900px; margin:50px auto; text-align:center; min-height:200px; }
+.section h2{ font-size:2em; margin-bottom:30px; color:#003300; }
+.testimonial-card{
+  font-size:1.2em;
+  background:#fff;
+  padding:30px 40px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  display:none;
 }
-.section h2 { font-size: 2em; margin-bottom: 30px; color: #004d00; }
-.testimonial-card {
-    font-size: 1.2em;
-    background: #fff;
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    display: none;
-    position: relative;
-    width: 100%;
-    box-sizing: border-box;
-}
-.testimonial-card.active {
-    display: block;
-    animation: fadeIn 0.8s ease;
-}
-.testimonial-card p { 
-    font-style: italic; 
-    margin-bottom: 15px; 
-    font-size: 1.1rem;
-}
-.testimonial-card strong { 
-    display: block; 
-    margin-top: 10px; 
-    font-weight: 600; 
-    color: #004d00; 
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+.testimonial-card.active{ display:block; animation:fadeIn 0.8s ease; }
+.testimonial-card p{ font-style:italic; margin-bottom:15px; font-size:1.1rem; }
+.testimonial-card strong{ display:block; margin-top:10px; font-weight:600; color:#003300; }
+@keyframes fadeIn{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
 
-/* ========================
-   Footer
-======================== */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #004d00;
-    color: #FFD700;
-    margin-top: 50px;
-}
+/* Footer */
+footer{ text-align:center; padding:20px; background:#003300; color:#FFD700; margin-top:50px; }
 
 /* Responsive */
 @media(max-width:768px){
-    nav { flex-direction: column; gap: 15px; padding: 15px 20px; }
-    .hero-text { left: 20px; bottom: 20px; max-width: 90%; padding: 12px; }
-    .hero-text h1 { font-size: 1.6em; }
-    .hero-slider { height: 350px; }
-    .testimonial-card { padding: 20px; font-size: 1rem; }
+  nav{ flex-direction:column; gap:15px; padding:15px 20px; }
+  .hero-text{ left:20px; bottom:20px; max-width:90%; padding:12px; }
+  .hero-text h1{ font-size:1.6em; }
+  .hero-slider{ height:350px; }
+  .testimonial-card{ padding:20px; font-size:1rem; }
 }
 </style>
 </head>
@@ -167,131 +114,125 @@ footer {
 
 <!-- Navigation -->
 <nav>
-    <div>
-        <img src="ROFO LEGEND TOURS.jpeg" alt="ROFO LEGEND Tours Logo" onerror="this.style.display='none'">
-    </div>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="experiences.html">Experiences</a></li>
-        <li><a href="packages.html">Packages</a></li>
-        <li><a href="blog.html">Journal</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
+  <div>
+    <img src="ROFO LEGEND TOURS.jpeg" alt="ROFO LEGEND Tours Logo" onerror="this.style.display='none'">
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="experiences.html">Experiences</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="blog.html">Journal</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
 </nav>
 
 <!-- Hero Slider -->
 <section class="hero-slider">
-    <div class="slides"></div>
-    <div class="hero-text">
-        <h1>Luxury Uganda Safari Experiences</h1>
-        <p>Private gorilla trekking, bespoke wildlife safaris and curated East African adventures.</p>
-        <a href="packages.html" class="btn">Explore Packages</a>
-    </div>
+  <div class="slides"></div>
+  <div class="hero-text">
+    <h1>Luxury Uganda Safari Experiences</h1>
+    <p>Private gorilla trekking, bespoke wildlife safaris and curated East African adventures.</p>
+    <a href="packages.html" class="btn">Explore Packages</a>
+  </div>
 </section>
 
 <!-- Testimonials -->
 <section class="section">
-    <h2>Client Testimonials</h2>
-    <div class="testimonial-card">
-        <p>"Absolutely world-class safari planning and execution. Every detail was perfect, from the lodge accommodations to the knowledgeable guides."</p>
-        <strong>- Emma Richardson, UK</strong>
-    </div>
-    <div class="testimonial-card">
-        <p>"The gorilla trek was unforgettable. Professional team, seamless logistics, and genuine care for both wildlife and travelers."</p>
-        <strong>- James O'Connor, USA</strong>
-    </div>
-    <div class="testimonial-card">
-        <p>"Best tour company in Uganda hands down. From Murchison Falls to Bwindi, every moment was curated with excellence."</p>
-        <strong>- Maria Schmidt, Germany</strong>
-    </div>
+  <h2>Client Testimonials</h2>
+  <div class="testimonial-card">
+    <p>"Absolutely world-class safari planning and execution."</p>
+    <strong>- Emma Richardson, UK</strong>
+  </div>
+  <div class="testimonial-card">
+    <p>"The gorilla trek was unforgettable. Professional team, seamless logistics."</p>
+    <strong>- James O'Connor, USA</strong>
+  </div>
+  <div class="testimonial-card">
+    <p>"Best tour company in Uganda hands down. Every moment curated with excellence."</p>
+    <strong>- Maria Schmidt, Germany</strong>
+  </div>
 </section>
 
 <!-- Footer -->
 <footer>
-    <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda</p>
+  <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda</p>
 </footer>
 
 <script>
-// ========================
 // Testimonials Slider
-// ========================
 const testimonialCards = document.querySelectorAll(".testimonial-card");
-let testimonialIdx = 0;
-if (testimonialCards.length > 0) testimonialCards[0].classList.add("active");
-setInterval(() => {
-    testimonialCards[testimonialIdx].classList.remove("active");
-    testimonialIdx = (testimonialIdx + 1) % testimonialCards.length;
-    testimonialCards[testimonialIdx].classList.add("active");
-}, 5000);
+let tIndex = 0;
+if(testimonialCards.length>0) testimonialCards[0].classList.add('active');
+setInterval(()=>{
+  testimonialCards[tIndex].classList.remove('active');
+  tIndex = (tIndex+1)%testimonialCards.length;
+  testimonialCards[tIndex].classList.add('active');
+},5000);
 
-// ========================
-// Hero Slider: 23 images with fallback
-// ========================
+// Hero Slider 23 images
 const heroContainer = document.querySelector(".hero-slider .slides");
 const TOTAL_HERO = 23;
 let heroIndex = 0;
 const heroImages = [];
 
 async function loadHeroImage(num){
-    return new Promise(resolve => {
-        const exts = ['jpg','jpeg','JPG','JPEG'];
-        let attempt = 0;
-        const img = document.createElement('img');
-        img.style.position='absolute';
-        img.style.top='0';
-        img.style.left='0';
-        img.style.width='100%';
-        img.style.height='100%';
-        img.style.objectFit='cover';
-        img.style.opacity='0';
-        img.style.transition='opacity 1s ease-in-out';
-        
-        function tryNextExt(){
-            if(attempt>=exts.length){
-                // placeholder
-                img.src=`https://placehold.co/1200x500/004d00/FFD700?text=ROFO+LEGEND+${num}`;
-                img.alt=`Slide ${num} placeholder`;
-                resolve(img);
-                return;
-            }
-            const path=`images/${num}.${exts[attempt]}`;
-            img.src=path;
-            img.alt=`Uganda Safari ${num}`;
-            img.onload=()=>resolve(img);
-            img.onerror=()=>{attempt++; tryNextExt();}
-        }
-        tryNextExt();
-    });
+  return new Promise(resolve=>{
+    const exts = ['jpg','jpeg','JPG','JPEG'];
+    let attempt=0;
+    const img=document.createElement('img');
+    img.style.position='absolute';
+    img.style.top='0';
+    img.style.left='0';
+    img.style.width='100%';
+    img.style.height='100%';
+    img.style.objectFit='cover';
+    img.style.opacity='0';
+    img.style.transition='opacity 1s ease-in-out';
+    
+    function tryNext(){
+      if(attempt>=exts.length){
+        img.src=`https://placehold.co/1200x500/003300/FFD700?text=Image+${num}+not+found`;
+        img.alt=`Slide ${num} placeholder`;
+        resolve(img);
+        return;
+      }
+      const path=`images/${num}.${exts[attempt]}`;
+      img.src=path;
+      img.alt=`Uganda Safari ${num}`;
+      img.onload=()=>resolve(img);
+      img.onerror=()=>{attempt++; tryNext();}
+    }
+    tryNext();
+  });
 }
 
 async function loadAllHero(){
-    for(let i=1;i<=TOTAL_HERO;i++){
-        const img = await loadHeroImage(i);
-        heroImages.push(img);
-        heroContainer.appendChild(img);
-    }
-    startHeroSlider();
+  for(let i=1;i<=TOTAL_HERO;i++){
+    const img=await loadHeroImage(i);
+    heroImages.push(img);
+    heroContainer.appendChild(img);
+  }
+  startHeroSlider();
 }
 
 function startHeroSlider(){
-    if(heroImages.length===0) return;
-    heroImages[0].classList.add('active');
-    heroImages[0].style.opacity='1';
-    setInterval(()=>{
-        heroImages[heroIndex].classList.remove('active');
-        heroImages[heroIndex].style.opacity='0';
-        heroIndex = (heroIndex+1)%heroImages.length;
-        heroImages[heroIndex].classList.add('active');
-        heroImages[heroIndex].style.opacity='1';
-    },4000);
+  if(heroImages.length===0) return;
+  heroImages[0].classList.add('active');
+  heroImages[0].style.opacity='1';
+  setInterval(()=>{
+    heroImages[heroIndex].classList.remove('active');
+    heroImages[heroIndex].style.opacity='0';
+    heroIndex = (heroIndex+1)%heroImages.length;
+    heroImages[heroIndex].classList.add('active');
+    heroImages[heroIndex].style.opacity='1';
+  },4000);
 }
 
-// Start hero slider when DOM is ready
 if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', loadAllHero);
+  document.addEventListener('DOMContentLoaded', loadAllHero);
 }else{
-    loadAllHero();
+  loadAllHero();
 }
 </script>
 
