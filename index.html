@@ -7,61 +7,49 @@
 <meta name="description" content="Luxury and affordable Uganda safaris, gorilla trekking and wildlife adventures.">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ========================
-     Global Styles
-  ======================== */
-  body {
+/* ========================
+   Global Styles
+======================== */
+body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background: #f5f5f5;
     color: #333;
-  }
+}
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+a { text-decoration: none; color: inherit; }
+h1, h2 { margin: 0 0 10px; }
 
-  h1, h2 {
-    margin: 0 0 10px;
-  }
-
-  /* ========================
-     Navigation
-  ======================== */
-  nav {
+/* ========================
+   Navigation
+======================== */
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
     background: #006400; /* Deep green */
     color: #FFD700; /* Golden text */
-  }
-
-  nav h2 img {
+}
+nav img {
     max-height: 50px;
-  }
-
-  nav ul {
+}
+nav ul {
     list-style: none;
     display: flex;
     gap: 25px;
-  }
-
-  nav ul li a {
-    color: #FFD700; /* golden links */
+}
+nav ul li a {
+    color: #FFD700;
     font-weight: 500;
     transition: color 0.3s ease;
-  }
+}
+nav ul li a:hover { color: #fff; }
 
-  nav ul li a:hover {
-    color: #fff; /* optional hover effect */
-  }
-
-  /* ========================
-     Hero Slider
-  ======================== */
-  .hero-slider {
+/* ========================
+   Hero Slider
+======================== */
+.hero-slider {
     position: relative;
     width: 100%;
     max-width: 1200px;
@@ -70,10 +58,9 @@
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    background: #004d00; /* Dark green background fallback */
-  }
-
-  .hero-slider .slides img {
+    background: #004d00; /* Dark green fallback */
+}
+.hero-slider .slides img {
     position: absolute;
     top: 0;
     left: 0;
@@ -82,61 +69,39 @@
     object-fit: cover;
     opacity: 0;
     transition: opacity 1s ease;
-  }
-
-  .hero-slider .slides img.active {
-    opacity: 1;
-  }
-
-  .hero-text {
+}
+.hero-slider .slides img.active { opacity: 1; }
+.hero-text {
     position: absolute;
     bottom: 30px;
     left: 50px;
-    color: #FFD700; /* golden text */
+    color: #FFD700;
     max-width: 500px;
-  }
-
-  .hero-text h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-  }
-
-  .hero-text p {
-    font-size: 1.1em;
-    margin-bottom: 15px;
-  }
-
-  .hero-text .btn {
+}
+.hero-text h1 { font-size: 2.5em; margin-bottom: 10px; }
+.hero-text p { font-size: 1.1em; margin-bottom: 15px; }
+.hero-text .btn {
     display: inline-block;
     padding: 10px 25px;
     background: #FFD700;
-    color: #006400; /* deep green text on button */
+    color: #006400;
     font-weight: 600;
     border-radius: 5px;
     transition: background 0.3s ease;
-  }
+}
+.hero-text .btn:hover { background: #e6c200; }
 
-  .hero-text .btn:hover {
-    background: #e6c200;
-  }
-
-  /* ========================
-     Testimonials
-  ======================== */
-  .section {
+/* ========================
+   Testimonials
+======================== */
+.section {
     max-width: 900px;
     margin: 50px auto;
     text-align: center;
     position: relative;
-  }
-
-  .section h2 {
-    font-size: 2em;
-    margin-bottom: 30px;
-    color: #006400; /* section title deep green */
-  }
-
-  .testimonial.card {
+}
+.section h2 { font-size: 2em; margin-bottom: 30px; color: #006400; }
+.testimonial.card {
     font-size: 1.2em;
     background: #fff;
     padding: 20px 30px;
@@ -149,165 +114,142 @@
     width: 100%;
     left: 0;
     top: 0;
-  }
+}
+.testimonial.card.active { opacity: 1; display: block; }
+.testimonial.card p { font-style: italic; margin-bottom: 10px; }
+.testimonial.card strong { display: block; margin-top: 5px; font-weight: 600; color: #006400; }
 
-  .testimonial.card.active {
-    opacity: 1;
-    display: block;
-  }
-
-  .testimonial.card p {
-    font-style: italic;
-    margin-bottom: 10px;
-  }
-
-  .testimonial.card strong {
-    display: block;
-    margin-top: 5px;
-    font-weight: 600;
-    color: #006400;
-  }
-
-  /* ========================
-     Footer
-  ======================== */
-  footer {
+/* ========================
+   Footer
+======================== */
+footer {
     text-align: center;
     padding: 20px;
-    background: #006400; /* deep green */
-    color: #FFD700; /* golden */
+    background: #006400;
+    color: #FFD700;
     margin-top: 50px;
-  }
+}
 
-  @media(max-width:768px){
+@media(max-width:768px){
     nav { flex-direction: column; gap: 15px; }
     .hero-text { left: 20px; bottom: 20px; max-width: 90%; }
     .hero-text h1 { font-size: 2em; }
-  }
+}
 </style>
 </head>
 <body>
 
 <!-- Navigation -->
 <nav>
-  <div>
-    <img src="ROFO LEGEND TOURS.jpeg" alt="ROFO LEGEND Tours Logo">
-  </div>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="experiences.html">Experiences</a></li>
-    <li><a href="packages.html">Packages</a></li>
-    <li><a href="blog.html">Journal</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+    <div>
+        <img src="ROFO LEGEND TOURS.jpeg" alt="ROFO LEGEND Tours Logo">
+    </div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+        <li><a href="packages.html">Packages</a></li>
+        <li><a href="blog.html">Journal</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
 </nav>
 
 <!-- Hero Slider -->
 <section class="hero-slider">
-  <div class="slides">
-    <!-- 23 images load dynamically -->
-  </div>
-  <div class="hero-text">
-    <h1>Luxury Uganda Safari Experiences</h1>
-    <p>Private gorilla trekking, bespoke wildlife safaris and curated East African adventures.</p>
-    <a href="packages.html" class="btn">Explore Packages</a>
-  </div>
+    <div class="slides"></div>
+    <div class="hero-text">
+        <h1>Luxury Uganda Safari Experiences</h1>
+        <p>Private gorilla trekking, bespoke wildlife safaris and curated East African adventures.</p>
+        <a href="packages.html" class="btn">Explore Packages</a>
+    </div>
 </section>
 
 <!-- Testimonials -->
 <section class="section">
-  <h2>Client Testimonials</h2>
-
-  <div class="testimonial card">
-    <p>"Absolutely world-class safari planning and execution."</p>
-    <strong>- Emma, UK</strong>
-  </div>
-
-  <div class="testimonial card">
-    <p>"The gorilla trek was unforgettable. Professional team."</p>
-    <strong>- James, USA</strong>
-  </div>
-
-  <div class="testimonial card">
-    <p>"Best tour company in Uganda hands down."</p>
-    <strong>- Maria, Germany</strong>
-  </div>
-
+    <h2>Client Testimonials</h2>
+    <div class="testimonial card">
+        <p>"Absolutely world-class safari planning and execution."</p>
+        <strong>- Emma, UK</strong>
+    </div>
+    <div class="testimonial card">
+        <p>"The gorilla trek was unforgettable. Professional team."</p>
+        <strong>- James, USA</strong>
+    </div>
+    <div class="testimonial card">
+        <p>"Best tour company in Uganda hands down."</p>
+        <strong>- Maria, Germany</strong>
+    </div>
 </section>
 
 <!-- Footer -->
 <footer>
-  <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda</p>
+    <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda</p>
 </footer>
 
+<!-- Scripts -->
 <script>
-/* ========================
-   Testimonials Slider
-======================== */
+// ========================
+// Testimonials Slider
+// ========================
 let testimonials = document.querySelectorAll(".testimonial.card");
 let testimonialIndex = 0;
-
-function rotateTestimonials() {
-    if (testimonials.length === 0) return;
-
-    testimonials.forEach((t, i) => {
-        t.classList.toggle("active", i === testimonialIndex);
-    });
-
-    testimonialIndex = (testimonialIndex + 1) % testimonials.length;
-}
-
 if (testimonials.length > 0) testimonials[0].classList.add("active");
-setInterval(rotateTestimonials, 5000);
 
-/* ========================
-   Hero Slider (23 images)
-======================== */
+setInterval(() => {
+    testimonials.forEach((t, i) => t.classList.toggle("active", i === testimonialIndex));
+    testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+}, 5000);
+
+// ========================
+// Hero Slider (23 images with JPG/JPEG fallback)
+// ========================
 const heroSlidesContainer = document.querySelector(".hero-slider .slides");
 const totalHeroImages = 23;
 let heroCurrent = 0;
-let imagesLoadedCount = 0;
 const heroImages = [];
-
 if (heroSlidesContainer) heroSlidesContainer.innerHTML = '';
 
-// Load image with fallback
-function loadImageWithFallback(imgElement, i) {
-    const extensions = ['JPG','JPEG','jpg','jpeg'];
-    let currentExtIndex = 0;
+function loadImage(i) {
+    return new Promise((resolve) => {
+        const extensions = ['jpg','jpeg','JPG','JPEG'];
+        let extIndex = 0;
+        const img = document.createElement("img");
+        img.style.opacity = "0";
+        img.style.display = "block";
+        img.style.position = "absolute";
+        img.style.top = 0;
+        img.style.left = 0;
+        img.style.width = "100%";
+        img.style.height = "100%";
 
-    function tryNextExtension() {
-        if (currentExtIndex >= extensions.length) {
-            imgElement.src = 'images/placeholder.jpg';
-            imgElement.alt = `Image ${i} not found`;
-            imagesLoadedCount++;
-            checkAllImagesLoaded();
-            return;
+        function tryNext() {
+            if (extIndex >= extensions.length) {
+                console.warn(`Image ${i} not found`);
+                img.src = 'images/placeholder.jpg';
+                img.alt = `Image ${i} not found`;
+                resolve(img);
+                return;
+            }
+            const ext = extensions[extIndex];
+            img.src = `images/${i}.${ext}`;
+            img.onload = () => resolve(img);
+            img.onerror = () => { extIndex++; tryNext(); };
         }
-
-        const ext = extensions[currentExtIndex];
-        imgElement.src = `images/${i}.${ext}`;
-        imgElement.onload = () => {
-            imagesLoadedCount++;
-            checkAllImagesLoaded();
-        };
-        imgElement.onerror = () => {
-            currentExtIndex++;
-            tryNextExtension();
-        };
-    }
-
-    tryNextExtension();
+        tryNext();
+    });
 }
 
-function checkAllImagesLoaded() {
-    if (imagesLoadedCount === totalHeroImages) startHeroSlideshow();
+async function loadAllHeroImages() {
+    for (let i = 1; i <= totalHeroImages; i++) {
+        const img = await loadImage(i);
+        heroSlidesContainer.appendChild(img);
+        heroImages.push(img);
+    }
+    startHeroSlideshow();
 }
 
 function startHeroSlideshow() {
     if (heroImages.length === 0) return;
-
     heroImages.forEach((img, idx) => {
         img.style.opacity = idx === 0 ? "1" : "0";
         img.classList.toggle("active", idx === 0);
@@ -316,29 +258,14 @@ function startHeroSlideshow() {
     setInterval(() => {
         heroImages[heroCurrent].classList.remove("active");
         heroImages[heroCurrent].style.opacity = "0";
-
         heroCurrent = (heroCurrent + 1) % heroImages.length;
-
         heroImages[heroCurrent].classList.add("active");
         heroImages[heroCurrent].style.opacity = "1";
     }, 4000);
 }
 
-// Dynamically create and append hero images
-for (let i = 1; i <= totalHeroImages; i++) {
-    const img = document.createElement("img");
-    img.style.opacity = "0";
-    img.style.display = "block";
-    img.style.position = "absolute";
-    img.style.top = 0;
-    img.style.left = 0;
-    img.style.width = "100%";
-    img.style.height = "100%";
-    
-    heroImages.push(img);
-    heroSlidesContainer.appendChild(img);
-    loadImageWithFallback(img, i);
-}
+// Start loading images
+loadAllHeroImages();
 </script>
 
 </body>
