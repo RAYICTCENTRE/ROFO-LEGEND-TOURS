@@ -1,69 +1,382 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Contact Us | ROFO LEGEND</title>
-<meta name="description" content="Contact ROFO LEGEND Tours & Travels in Kampala, Uganda.">
-<link rel="stylesheet" href="style.css">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | ROFO LEGEND Tours</title>
+<meta name="description" content="Contact ROFO LEGEND Tours in Kampala, Uganda. Plan your safari, ask questions, or request a custom tour package.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-.whatsapp-btn {
-    display:inline-block;
-    margin-top:15px;
-    padding:12px 25px;
-    background-color:#25D366;
-    color:white;
-    font-weight:bold;
-    text-decoration:none;
-    border-radius:8px;
-    transition:0.3s;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
-.whatsapp-btn:hover {
-    background-color:#1ebe5d;
-    transform:translateY(-3px);
+
+body {
+  background: #f9fafb;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+/* Navigation - same as about page */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 8%;
+  background: #022c22;
+  flex-wrap: wrap;
+}
+
+nav h2 {
+  color: #facc15;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+nav ul {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+nav a:hover {
+  color: #facc15;
+}
+
+/* Hero section - consistent with about page */
+.hero {
+  height: 40vh;
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470');
+  background-size: cover;
+  background-position: center 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  letter-spacing: -0.5px;
+}
+
+.hero p {
+  font-size: 1rem;
+  margin-top: 8px;
+  opacity: 0.9;
+}
+
+/* Section styling */
+.section {
+  padding: 55px 10%;
+  background: #ffffff;
+}
+
+/* alternating background */
+.contact-alt {
+  background: #ecfdf5;
+}
+
+.section h2 {
+  font-size: 1.8rem;
+  color: #065f46;
+  margin-bottom: 28px;
+  border-left: 4px solid #facc15;
+  padding-left: 18px;
+}
+
+/* contact grid - two column layout */
+.contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 10px;
+}
+
+.contact-details {
+  flex: 1.2;
+  min-width: 260px;
+}
+
+.contact-details p {
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-details strong {
+  color: #065f46;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+.contact-details a {
+  color: #1f2937;
+  text-decoration: none;
+  border-bottom: 1px solid #cbd5e1;
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+.contact-details a:hover {
+  color: #065f46;
+  border-bottom-color: #facc15;
+}
+
+/* office info cards (no icons) */
+.info-card {
+  background: white;
+  padding: 18px 22px;
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+  border-top: 3px solid #facc15;
+  margin-bottom: 24px;
+}
+
+.info-card h3 {
+  color: #065f46;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+/* whatsapp button - clean text only, no icon */
+.btn-whatsapp {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 28px;
+  background-color: #075E54;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 40px;
+  transition: 0.25s;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-whatsapp:hover {
+  background-color: #054a3e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* contact form area - simple and professional */
+.contact-form {
+  flex: 1.5;
+  min-width: 280px;
+  background: #ffffff;
+  padding: 28px 30px;
+  border-radius: 24px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+
+.contact-form h3 {
+  font-size: 1.4rem;
+  color: #022c22;
+  margin-bottom: 18px;
+  font-weight: 600;
+  border-left: 3px solid #facc15;
+  padding-left: 14px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: #2d3e3a;
+}
+
+.form-group input, 
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  background: #fefefe;
+  transition: 0.2s;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+  outline: none;
+  border-color: #facc15;
+  box-shadow: 0 0 0 2px rgba(250,204,21,0.2);
+}
+
+.submit-btn {
+  background-color: #065f46;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 100%;
+  text-align: center;
+}
+
+.submit-btn:hover {
+  background-color: #022c22;
+  transform: translateY(-2px);
+}
+
+/* footer */
+footer {
+  padding: 20px;
+  font-size: 0.85rem;
+  background: #022c22;
+  color: #d1fae5;
+  text-align: center;
+}
+
+/* responsiveness */
+@media (max-width: 800px) {
+  .section {
+    padding: 40px 6%;
+  }
+  nav {
+    flex-direction: column;
+    gap: 12px;
+  }
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .contact-grid {
+    flex-direction: column;
+  }
+  .contact-form {
+    padding: 22px;
+  }
 }
 </style>
-
 </head>
 <body>
 
 <nav>
-<h2>ROFO LEGEND</h2>
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="experiences.html">Experiences</a></li>
-<li><a href="packages.html">Packages</a></li>
-<li><a href="blog.html">Journal</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
+  <h2>ROFO LEGEND</h2>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="experiences.html">Experiences</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="blog.html">Journal</a></li>
+    <li><a href="contact.html" style="color:#facc15;">Contact</a></li>
+  </ul>
 </nav>
 
+<section class="hero">
+  <div>
+    <h1>Connect With Us</h1>
+    <p>Plan your Ugandan safari · Ask questions · Custom travel requests</p>
+  </div>
+</section>
+
 <section class="section">
-<h2>Contact Us</h2>
+  <h2>Contact Information</h2>
+  <div class="contact-grid">
+    <!-- Left side: contact details, offices, WhatsApp -->
+    <div class="contact-details">
+      <div class="info-card">
+        <h3>Reach Out Directly</h3>
+        <p><strong>Email:</strong> <a href="mailto:info@rofolegend.com">info@rofolegend.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+256782432398">+256 782 432 398</a></p>
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/256782432398" target="_blank">+256 782 432 398</a></p>
+        <a href="https://wa.me/256782432398?text=Hello%20ROFO%20LEGEND%20Tours,%20I%20am%20interested%20in%20your%20safari%20packages." target="_blank" class="btn-whatsapp">
+          Book or Inquire via WhatsApp
+        </a>
+      </div>
 
-<p><strong>Email:</strong> info@rofolegend.com</p>
-<p><strong>Phone:</strong> +256 782 432 398</p>
-<p><strong>Location:</strong> Kampala, Uganda</p>
+      <div class="info-card">
+        <h3>Main Office</h3>
+        <p>Kampala, Uganda</p>
+        <p>C/O Ibamba Restaurant, Katego Road, Kamwokya</p>
+        <p><strong>Postal Address:</strong> P.O. Box 540022, Bweyale, Kiryandongo</p>
+      </div>
 
-<!-- WhatsApp Direct Link -->
-<p><strong>WhatsApp:</strong> 
-<a href="https://wa.me/256782432398?text=Hello%20ROFO%20LEGEND%20Tours,%20I%20am%20interested%20in%20your%20safari%20packages." 
-target="_blank">
-Chat With Us on WhatsApp
-</a>
-</p>
+      <div class="info-card">
+        <h3>Field Operations Base</h3>
+        <p>Bweyale Town, Kiryandongo District</p>
+        <p>Near Murchison Falls National Park corridor</p>
+        <p><strong>Administrative hours:</strong> Monday – Friday, 8:00 AM – 5:00 PM</p>
+      </div>
+    </div>
 
-<!-- WhatsApp Button -->
-<a href="https://wa.me/256782432398?text=Hello%20ROFO%20LEGEND%20Tours,%20I%20would%20like%20to%20book%20a%20tour." 
-target="_blank" 
-class="whatsapp-btn">
-📱 Book via WhatsApp
-</a>
+    <!-- Right side: inquiry form -->
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone number (optional)</label>
+          <input type="tel" id="phone" name="phone" placeholder="+256 ...">
+        </div>
+        <div class="form-group">
+          <label for="message">Tell us about your travel plans</label>
+          <textarea id="message" name="message" rows="4" placeholder="I'm interested in wildlife safaris, cultural tours, or custom packages..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Inquiry</button>
+      </form>
+      <p style="font-size: 0.75rem; margin-top: 16px; color: #4b5563; text-align: center;">We’ll respond within 24 hours. All inquiries are handled with care.</p>
+    </div>
+  </div>
+</section>
 
+<!-- Additional location / promise section without icons -->
+<section class="contact-alt" style="background: #ecfdf5; padding: 40px 10%;">
+  <div style="max-width: 780px; margin: 0 auto; text-align: center;">
+    <h2 style="border-left: none; padding-left: 0; margin-bottom: 14px;">Let’s Craft Your Journey</h2>
+    <p style="font-size: 1rem;">Whether you dream of gorilla trekking, Murchison Falls boat safaris, bird watching, or cultural encounters — our team is ready to design a seamless adventure. Reach out today and experience Uganda’s hidden treasures with Rofo Legend Tours.</p>
+    <p style="margin-top: 20px;"><strong>Explore with us — authentic, responsible, unforgettable.</strong></p>
+  </div>
 </section>
 
 <footer>
-<p>© 2026 ROFO LEGEND Tours</p>
+  <p>© 2026 ROFO LEGEND Tours (U) Ltd — Heritage-driven safaris | P.O. Box 540022, Bweyale, Uganda</p>
 </footer>
 
 </body>

@@ -4,10 +4,245 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Experiences | ROFO LEGEND Tours & Travels</title>
-<meta name="description" content="Explore luxury safari experiences in Uganda including Gorilla Trekking, Murchison Falls, Lake Victoria Cruises, Marine Tourism, Mountain Climbing and more.">
+<meta name="description" content="Explore luxury safari experiences in Uganda including Gorilla Trekking, Murchison Falls, Marine Tourism, Mountain Climbing and more. Visit Ibamba Restaurant for authentic Ugandan cuisine.">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script defer src="main.js"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #f9fafb;
+        color: #1f2937;
+        line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 8%;
+        background: #022c22;
+        flex-wrap: wrap;
+    }
+
+    nav h2 {
+        color: #facc15;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    nav ul {
+        display: flex;
+        gap: 22px;
+        list-style: none;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+        color: #facc15;
+    }
+
+    /* Page Header */
+    .header-section {
+        background: linear-gradient(135deg, #065f46, #022c22);
+        color: white;
+        text-align: center;
+        padding: 60px 10% 50px;
+    }
+
+    .header-section h1 {
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+        color: #facc15;
+    }
+
+    .header-section p {
+        font-size: 1rem;
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0.9;
+    }
+
+    /* Section wrapper */
+    .section {
+        padding: 55px 10%;
+    }
+
+    /* Experiences Grid */
+    .experiences-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 28px;
+        background: #f9fafb;
+    }
+
+    .experience-card {
+        background: white;
+        padding: 28px 24px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+        border-top: 4px solid #facc15;
+    }
+
+    .experience-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .experience-card h2 {
+        color: #065f46;
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+        font-weight: 600;
+    }
+
+    .experience-card p {
+        font-size: 0.92rem;
+        color: #4b5563;
+        line-height: 1.6;
+    }
+
+    /* Ibamba Restaurant Block */
+    .ibamba-block {
+        background: #ecfdf5;
+        margin: 20px 10% 50px;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+        border: 1px solid #d1fae5;
+    }
+
+    .ibamba-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 30px;
+        padding: 32px 40px;
+    }
+
+    .ibamba-logo {
+        flex-shrink: 0;
+        width: 140px;
+        height: 140px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.2s ease;
+    }
+
+    .ibamba-logo:hover {
+        transform: scale(1.02);
+    }
+
+    .ibamba-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .ibamba-content {
+        flex: 1;
+    }
+
+    .ibamba-content h3 {
+        color: #065f46;
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .ibamba-content .tagline {
+        color: #b45309;
+        font-weight: 600;
+        margin-bottom: 12px;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+
+    .ibamba-content p {
+        color: #2d3e3a;
+        margin-bottom: 18px;
+        font-size: 0.95rem;
+    }
+
+    .ibamba-btn {
+        display: inline-block;
+        background-color: #065f46;
+        color: white;
+        padding: 10px 28px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: 0.25s;
+        border: none;
+    }
+
+    .ibamba-btn:hover {
+        background-color: #022c22;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Footer */
+    footer {
+        padding: 22px;
+        font-size: 0.85rem;
+        background: #022c22;
+        color: #d1fae5;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+        .section {
+            padding: 40px 6%;
+        }
+        .ibamba-inner {
+            flex-direction: column;
+            text-align: center;
+            padding: 28px 24px;
+        }
+        .ibamba-logo {
+            width: 120px;
+            height: 120px;
+        }
+        .ibamba-block {
+            margin: 20px 6% 40px;
+        }
+        .header-section h1 {
+            font-size: 1.8rem;
+        }
+        nav {
+            flex-direction: column;
+            gap: 12px;
+        }
+        nav ul {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+    }
+</style>
 </head>
 <body>
 
@@ -25,7 +260,7 @@
 </nav>
 
 <!-- Page Header -->
-<section class="section header-section">
+<section class="header-section">
   <h1>Our Unique Experiences</h1>
   <p>Luxury and unforgettable adventures in Uganda tailored for discerning travelers. Explore wildlife, culture, mountains, lakes, and rivers with us.</p>
 </section>
@@ -41,11 +276,6 @@
   <div class="experience-card">
     <h2>Murchison Falls Safari</h2>
     <p>Explore Uganda’s largest waterfall and its surrounding wildlife park. Witness roaring falls, breathtaking landscapes, and abundant wildlife on guided safari tours.</p>
-  </div>
-
-  <div class="experience-card">
-    <h2>Lake Victoria Cruises</h2>
-    <p>Relax on serene boat cruises on Africa’s largest lake. Enjoy sunset views, island exploration, fishing, and marine wildlife experiences.</p>
   </div>
 
   <div class="experience-card">
@@ -69,20 +299,30 @@
   </div>
 
   <div class="experience-card">
-    <h2>Adventure & Water Sports</h2>
-    <p>Rafting on the Nile, kayaking, zip-lining, and other thrilling outdoor activities for adventure seekers of all levels.</p>
-  </div>
-
-  <div class="experience-card">
     <h2>Luxury Safari Packages</h2>
     <p>Customizable packages combining wildlife safaris, mountain trekking, marine adventures, and cultural tours for a premium travel experience.</p>
   </div>
 
 </section>
 
+<!-- IBAMBA RESTAURANT BLOCK - with logo and link -->
+<div class="ibamba-block">
+  <div class="ibamba-inner">
+    <div class="ibamba-logo">
+      <img src="ibamba.jpeg" alt="Ibamba Restaurant Logo" onerror="this.src='https://placehold.co/140x140/facc15/022c22?text=IBAMBA'">
+    </div>
+    <div class="ibamba-content">
+      <h3>Visit Ibamba Restaurant</h3>
+      <div class="tagline">Authentic Ugandan Cuisine & Warm Hospitality</div>
+      <p>Located at our headquarters in Kamwokya, Kampala, Ibamba Restaurant offers a delightful culinary experience featuring traditional dishes, fresh ingredients, and a relaxing ambiance. Perfect for travelers and locals seeking authentic flavors.</p>
+      <a href="https://rayictcentre.github.io/IBAMBA/" target="_blank" class="ibamba-btn">Explore Ibamba Restaurant →</a>
+    </div>
+  </div>
+</div>
+
 <!-- Footer -->
 <footer>
-<p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda</p>
+  <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda | Heritage-driven safaris & authentic experiences</p>
 </footer>
 
 </body>
