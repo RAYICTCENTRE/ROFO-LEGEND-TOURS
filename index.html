@@ -14,7 +14,6 @@ body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background: #f5f5f5;
-    color: #333;
 }
 a { text-decoration: none; color: inherit; }
 h1, h2 { margin: 0 0 10px; }
@@ -44,7 +43,7 @@ nav ul li a {
 nav ul li a:hover { color: #fff; }
 
 /* ========================
-   Hero Slider - FIXED POSITIONING
+   Hero Slider
 ======================== */
 .hero-slider {
     position: relative;
@@ -70,11 +69,12 @@ nav ul li a:hover { color: #fff; }
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
 }
 .hero-slider .slides img.active {
     opacity: 1;
-    z-index: 1;
+    z-index: 2;
 }
 .hero-text {
     position: absolute;
@@ -101,7 +101,7 @@ nav ul li a:hover { color: #fff; }
 .hero-text .btn:hover { background: #e6c200; }
 
 /* ========================
-   Testimonials - FIXED POSITIONING
+   Testimonials
 ======================== */
 .section {
     max-width: 900px;
@@ -153,6 +153,7 @@ footer {
     margin-top: 50px;
 }
 
+/* Responsive */
 @media(max-width:768px){
     nav { flex-direction: column; gap: 15px; padding: 15px 20px; }
     .hero-text { left: 20px; bottom: 20px; max-width: 90%; padding: 12px; }
@@ -193,213 +194,104 @@ footer {
 <section class="section">
     <h2>Client Testimonials</h2>
     <div class="testimonial-card">
-        <p>"Absolutely world-class safari planning and execution. Every detail was perfect, from the lodge accommodations to the knowledgeable guides. We saw the Big Five and the gorilla trek was life-changing!"</p>
-        <strong>- Emma Richardson, United Kingdom</strong>
+        <p>"Absolutely world-class safari planning and execution. Every detail was perfect, from the lodge accommodations to the knowledgeable guides."</p>
+        <strong>- Emma Richardson, UK</strong>
     </div>
     <div class="testimonial-card">
-        <p>"The gorilla trek was unforgettable. Professional team, seamless logistics, and genuine care for both wildlife and travelers. I highly recommend ROFO LEGEND for anyone visiting Uganda."</p>
+        <p>"The gorilla trek was unforgettable. Professional team, seamless logistics, and genuine care for both wildlife and travelers."</p>
         <strong>- James O'Connor, USA</strong>
     </div>
     <div class="testimonial-card">
-        <p>"Best tour company in Uganda hands down. From Murchison Falls to Bwindi, every moment was curated with excellence. The attention to safety and cultural immersion was outstanding."</p>
+        <p>"Best tour company in Uganda hands down. From Murchison Falls to Bwindi, every moment was curated with excellence."</p>
         <strong>- Maria Schmidt, Germany</strong>
     </div>
 </section>
 
 <!-- Footer -->
 <footer>
-    <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda | Heritage-driven safaris</p>
+    <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda</p>
 </footer>
 
 <script>
 // ========================
-// FIXED: Testimonials Slider - works correctly
+// Testimonials Slider
 // ========================
 const testimonialCards = document.querySelectorAll(".testimonial-card");
 let testimonialIdx = 0;
-
-if (testimonialCards.length > 0) {
-    // Show first testimonial
-    testimonialCards[0].classList.add("active");
-    
-    setInterval(() => {
-        // Remove active from current
-        testimonialCards[testimonialIdx].classList.remove("active");
-        // Move to next
-        testimonialIdx = (testimonialIdx + 1) % testimonialCards.length;
-        // Add active to new current
-        testimonialCards[testimonialIdx].classList.add("active");
-    }, 5000);
-}
+if (testimonialCards.length > 0) testimonialCards[0].classList.add("active");
+setInterval(() => {
+    testimonialCards[testimonialIdx].classList.remove("active");
+    testimonialIdx = (testimonialIdx + 1) % testimonialCards.length;
+    testimonialCards[testimonialIdx].classList.add("active");
+}, 5000);
 
 // ========================
-// FIXED: Hero Slider - Dynamic loading for 23 images (supports .jpg, .jpeg, .JPG, .JPEG)
+// Hero Slider: 23 images with fallback
 // ========================
-const heroSlidesContainer = document.querySelector(".hero-slider .slides");
-const TOTAL_IMAGES = 23;
-let currentSlideIndex = 0;
-let loadedImagesArray = [];
-let isSlideshowRunning = false;
+const heroContainer = document.querySelector(".hero-slider .slides");
+const TOTAL_HERO = 23;
+let heroIndex = 0;
+const heroImages = [];
 
-// Clear container if needed
-if (heroSlidesContainer) {
-    heroSlidesContainer.innerHTML = "";
-}
-
-/**
- * Attempts to load an image by trying multiple extensions
- * Returns a Promise that resolves with the img element
- */
-function loadImageWithFallback(imageNumber) {
-    return new Promise((resolve) => {
-        const extensions = ['jpg', 'jpeg', 'JPG', 'JPEG'];
-        let attemptIndex = 0;
-        const imgElement = document.createElement("img");
+async function loadHeroImage(num){
+    return new Promise(resolve => {
+        const exts = ['jpg','jpeg','JPG','JPEG'];
+        let attempt = 0;
+        const img = document.createElement('img');
+        img.style.position='absolute';
+        img.style.top='0';
+        img.style.left='0';
+        img.style.width='100%';
+        img.style.height='100%';
+        img.style.objectFit='cover';
+        img.style.opacity='0';
+        img.style.transition='opacity 1s ease-in-out';
         
-        // Set basic styles
-        imgElement.style.position = "absolute";
-        imgElement.style.top = "0";
-        imgElement.style.left = "0";
-        imgElement.style.width = "100%";
-        imgElement.style.height = "100%";
-        imgElement.style.objectFit = "cover";
-        imgElement.style.opacity = "0";
-        imgElement.style.transition = "opacity 0.8s ease-in-out";
-        
-        function tryNextExtension() {
-            if (attemptIndex >= extensions.length) {
-                // All extensions failed - use placeholder
-                console.warn(`⚠️ Image ${imageNumber} not found as JPG or JPEG, using placeholder`);
-                imgElement.src = `https://placehold.co/1200x500/004d00/FFD700?text=ROFO+LEGEND+${imageNumber}`;
-                imgElement.alt = `Slide ${imageNumber} (placeholder)`;
-                resolve(imgElement);
+        function tryNextExt(){
+            if(attempt>=exts.length){
+                // placeholder
+                img.src=`https://placehold.co/1200x500/004d00/FFD700?text=ROFO+LEGEND+${num}`;
+                img.alt=`Slide ${num} placeholder`;
+                resolve(img);
                 return;
             }
-            
-            const ext = extensions[attemptIndex];
-            const imagePath = `images/${imageNumber}.${ext}`;
-            imgElement.src = imagePath;
-            imgElement.alt = `Uganda Safari ${imageNumber}`;
-            
-            // Handle successful load
-            imgElement.onload = () => {
-                console.log(`✅ Loaded: ${imagePath}`);
-                resolve(imgElement);
-            };
-            
-            // Handle error - try next extension
-            imgElement.onerror = () => {
-                console.log(`❌ Failed: ${imagePath}, trying next extension...`);
-                attemptIndex++;
-                tryNextExtension();
-            };
+            const path=`images/${num}.${exts[attempt]}`;
+            img.src=path;
+            img.alt=`Uganda Safari ${num}`;
+            img.onload=()=>resolve(img);
+            img.onerror=()=>{attempt++; tryNextExt();}
         }
-        
-        tryNextExtension();
+        tryNextExt();
     });
 }
 
-/**
- * Loads all images from 1 to TOTAL_IMAGES
- */
-async function loadAllHeroImages() {
-    console.log("🚀 Starting to load hero images...");
-    
-    // Create loading indicator
-    const loadingMsg = document.createElement("div");
-    loadingMsg.style.position = "absolute";
-    loadingMsg.style.top = "50%";
-    loadingMsg.style.left = "50%";
-    loadingMsg.style.transform = "translate(-50%, -50%)";
-    loadingMsg.style.color = "#FFD700";
-    loadingMsg.style.fontWeight = "bold";
-    loadingMsg.style.zIndex = "20";
-    loadingMsg.style.background = "rgba(0,77,0,0.8)";
-    loadingMsg.style.padding = "10px 20px";
-    loadingMsg.style.borderRadius = "8px";
-    loadingMsg.innerText = "Loading safari experiences...";
-    heroSlidesContainer.appendChild(loadingMsg);
-    
-    // Load images sequentially to ensure order
-    for (let i = 1; i <= TOTAL_IMAGES; i++) {
-        const img = await loadImageWithFallback(i);
-        loadedImagesArray.push(img);
-        heroSlidesContainer.appendChild(img);
-        
-        // Small delay to prevent UI blocking
-        await new Promise(resolve => setTimeout(resolve, 10));
+async function loadAllHero(){
+    for(let i=1;i<=TOTAL_HERO;i++){
+        const img = await loadHeroImage(i);
+        heroImages.push(img);
+        heroContainer.appendChild(img);
     }
-    
-    // Remove loading message
-    if (loadingMsg) loadingMsg.remove();
-    
-    console.log(`✅ Successfully loaded ${loadedImagesArray.length} images`);
-    
-    // Start slideshow after all images are loaded
-    startHeroSlideshow();
+    startHeroSlider();
 }
 
-/**
- * Starts the slideshow rotation
- */
-function startHeroSlideshow() {
-    if (loadedImagesArray.length === 0) {
-        console.error("No images loaded, cannot start slideshow");
-        return;
-    }
-    
-    // Make sure first image is visible
-    loadedImagesArray.forEach((img, idx) => {
-        if (idx === 0) {
-            img.classList.add("active");
-            img.style.opacity = "1";
-            img.style.zIndex = "2";
-        } else {
-            img.classList.remove("active");
-            img.style.opacity = "0";
-            img.style.zIndex = "1";
-        }
-    });
-    
-    console.log("🎬 Hero slideshow started! Rotating every 4 seconds.");
-    
-    // Auto-rotate every 4 seconds
-    setInterval(() => {
-        // Fade out current slide
-        const currentImg = loadedImagesArray[currentSlideIndex];
-        currentImg.style.opacity = "0";
-        currentImg.classList.remove("active");
-        
-        // Move to next slide
-        currentSlideIndex = (currentSlideIndex + 1) % loadedImagesArray.length;
-        
-        // Fade in new slide
-        const nextImg = loadedImagesArray[currentSlideIndex];
-        nextImg.style.opacity = "1";
-        nextImg.classList.add("active");
-        
-    }, 4000);
+function startHeroSlider(){
+    if(heroImages.length===0) return;
+    heroImages[0].classList.add('active');
+    heroImages[0].style.opacity='1';
+    setInterval(()=>{
+        heroImages[heroIndex].classList.remove('active');
+        heroImages[heroIndex].style.opacity='0';
+        heroIndex = (heroIndex+1)%heroImages.length;
+        heroImages[heroIndex].classList.add('active');
+        heroImages[heroIndex].style.opacity='1';
+    },4000);
 }
 
-// Initialize the entire page
-async function init() {
-    await loadAllHeroImages();
-}
-
-// Start everything when page is ready
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-} else {
-    init();
-}
-
-// Optional: Preload fallback for logo if needed
-const logoImg = document.querySelector("nav img");
-if (logoImg) {
-    logoImg.onerror = function() {
-        console.log("Logo image not found, hiding placeholder");
-        this.style.display = "none";
-    };
+// Start hero slider when DOM is ready
+if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', loadAllHero);
+}else{
+    loadAllHero();
 }
 </script>
 
