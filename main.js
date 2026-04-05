@@ -1,54 +1,60 @@
-// ===============================
 // Testimonials Slider
-// ===============================
 let testimonials = document.querySelectorAll(".testimonial");
-let testimonialIndex = 0;
-
-function rotateTestimonials() {
-  if (testimonials.length === 0) return;
-  testimonials.forEach(t => t.style.display = "none");
-  testimonials[testimonialIndex].style.display = "block";
-  testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+let index = 0;
+function rotateTestimonials(){
+  if(testimonials.length === 0) return;
+  testimonials.forEach(t => t.style.display="none");
+  testimonials[index].style.display="block";
+  index = (index+1)%testimonials.length;
 }
-
-// Start testimonials rotation every 5 seconds
-rotateTestimonials(); // show first immediately
 setInterval(rotateTestimonials, 5000);
 
-
-// ===============================
-// Hero Gallery Slider (Images in ROOT)
-// ===============================
+// Hero Gallery Slider for 1 to 23 (supports both .jpg and .jpeg)
 const heroSlidesContainer = document.querySelector(".hero-slider .slides");
-const totalHeroImages = 17; // images 1.jpg → 17.jpg
+const totalHeroImages = 23;
 let heroCurrent = 1;
+let imagesLoaded = 0;
+const heroImagesArray = [];
+
+// Function to try loading image with multiple extensions
+function tryLoadImage(imgElement, i, extensionIndex) {
+    const extensions = ['JPG', 'JPEG', 'jpg', 'jpeg'];
+    
+    if (extensionIndex >= extensions.length) {
+        // Fallback - no image found
+        imgElement.src = `images/${i}.jpg`;
+        imgElement.classList.add('error-load');
+        return;
+    }
+    
+    imgElement.src = `images/${i}.${extensions[extensionIndex]}`;
+    
+    imgElement.onerror = function() {
+        tryLoadImage(imgElement, i, extensionIndex + 1);
+    };
+    
+    imgElement.onload = function() {
+        // Successfully loaded
+    };
+}
 
 // Dynamically load images
 for (let i = 1; i <= totalHeroImages; i++) {
     const img = document.createElement("img");
-    img.src = `${i}.jpg`;  // Images are in the root
-    img.alt = `Hero Image ${i}`;
-    if (i === 1) img.classList.add("active"); // first image active
+    tryLoadImage(img, i, 0);
+    if (i === 1) img.classList.add("active");
     heroSlidesContainer.appendChild(img);
+    heroImagesArray.push(img);
 }
 
 const heroImages = document.querySelectorAll(".hero-slider .slides img");
 
-// Function to go to next hero slide
 function nextHeroSlide() {
-    heroImages[heroCurrent - 1].classList.remove("active");
-    heroCurrent = heroCurrent === totalHeroImages ? 1 : heroCurrent + 1;
-    heroImages[heroCurrent - 1].classList.add("active");
+  if (heroImages.length === 0) return;
+  heroImages[heroCurrent - 1].classList.remove("active");
+  heroCurrent = heroCurrent === totalHeroImages ? 1 : heroCurrent + 1;
+  heroImages[heroCurrent - 1].classList.add("active");
 }
 
 // Auto-slide every 4 seconds
 setInterval(nextHeroSlide, 4000);
-
-
-// ===============================
-// Optional: Make hero slider fade
-// ===============================
-// Make sure your CSS has:
-// .hero-slider .slides img { 
-//   position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1s; }
-// .hero-slider .slides img.active { opacity:1; z-index:1; }
