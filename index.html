@@ -17,7 +17,7 @@ nav {
   justify-content:space-between;
   align-items:center;
   padding:20px 50px;
-  background:#003300; /* Darker green */
+  background:#001b00;
   color:#FFD700;
 }
 nav img{ max-height:50px; }
@@ -64,7 +64,7 @@ nav ul li a:hover{ color:#fff; }
   color:#FFD700;
   max-width:500px;
   z-index:10;
-  background: rgba(0,51,0,0.6); /* Darker overlay */
+  background: rgba(0,51,0,0.6);
   padding:20px;
   border-radius:10px;
 }
@@ -100,7 +100,6 @@ nav ul li a:hover{ color:#fff; }
 /* Footer */
 footer{ text-align:center; padding:20px; background:#003300; color:#FFD700; margin-top:50px; }
 
-/* Responsive */
 @media(max-width:768px){
   nav{ flex-direction:column; gap:15px; padding:15px 20px; }
   .hero-text{ left:20px; bottom:20px; max-width:90%; padding:12px; }
@@ -112,7 +111,6 @@ footer{ text-align:center; padding:20px; background:#003300; color:#FFD700; marg
 </head>
 <body>
 
-<!-- Navigation -->
 <nav>
   <div>
     <img src="ROFO LEGEND TOURS.jpeg" alt="ROFO LEGEND Tours Logo" onerror="this.style.display='none'">
@@ -127,7 +125,6 @@ footer{ text-align:center; padding:20px; background:#003300; color:#FFD700; marg
   </ul>
 </nav>
 
-<!-- Hero Slider -->
 <section class="hero-slider">
   <div class="slides"></div>
   <div class="hero-text">
@@ -137,7 +134,6 @@ footer{ text-align:center; padding:20px; background:#003300; color:#FFD700; marg
   </div>
 </section>
 
-<!-- Testimonials -->
 <section class="section">
   <h2>Client Testimonials</h2>
   <div class="testimonial-card">
@@ -154,85 +150,67 @@ footer{ text-align:center; padding:20px; background:#003300; color:#FFD700; marg
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda</p>
 </footer>
 
 <script>
 // Testimonials Slider
-const testimonialCards = document.querySelectorAll(".testimonial-card");
+const testimonials = document.querySelectorAll(".testimonial-card");
 let tIndex = 0;
-if(testimonialCards.length>0) testimonialCards[0].classList.add('active');
+if(testimonials.length>0) testimonials[0].classList.add('active');
 setInterval(()=>{
-  testimonialCards[tIndex].classList.remove('active');
-  tIndex = (tIndex+1)%testimonialCards.length;
-  testimonialCards[tIndex].classList.add('active');
+  testimonials[tIndex].classList.remove('active');
+  tIndex=(tIndex+1)%testimonials.length;
+  testimonials[tIndex].classList.add('active');
 },5000);
 
-// Hero Slider 23 images
-const heroContainer = document.querySelector(".hero-slider .slides");
-const TOTAL_HERO = 23;
-let heroIndex = 0;
-const heroImages = [];
+// Hero Slider using exact filenames
+const heroFiles = [
+  "1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg",
+  "6.jpeg", "7.jpeg", "8.jpeg", "9.jpeg", "10.jpg",
+  "11.jpeg", "12.JPG", "13.jpg", "14.jpeg", "15.JPG",
+  "16.jpg", "17.jpeg", "18.JPG", "19.jpg", "20.jpeg",
+  "21.JPG", "22.jpg", "23.jpeg"
+];
+const heroContainer=document.querySelector(".hero-slider .slides");
+const heroImages=[];
+let hIndex=0;
 
-async function loadHeroImage(num){
-  return new Promise(resolve=>{
-    const exts = ['jpg','jpeg','JPG','JPEG'];
-    let attempt=0;
-    const img=document.createElement('img');
-    img.style.position='absolute';
-    img.style.top='0';
-    img.style.left='0';
-    img.style.width='100%';
-    img.style.height='100%';
-    img.style.objectFit='cover';
-    img.style.opacity='0';
-    img.style.transition='opacity 1s ease-in-out';
-    
-    function tryNext(){
-      if(attempt>=exts.length){
-        img.src=`https://placehold.co/1200x500/003300/FFD700?text=Image+${num}+not+found`;
-        img.alt=`Slide ${num} placeholder`;
-        resolve(img);
-        return;
-      }
-      const path=`images/${num}.${exts[attempt]}`;
-      img.src=path;
-      img.alt=`Uganda Safari ${num}`;
-      img.onload=()=>resolve(img);
-      img.onerror=()=>{attempt++; tryNext();}
-    }
-    tryNext();
-  });
-}
+// Load images
+heroFiles.forEach(file=>{
+  const img=document.createElement("img");
+  img.src=`images/${file}`;
+  img.alt=file.split('.')[0];
+  img.style.position='absolute';
+  img.style.top='0';
+  img.style.left='0';
+  img.style.width='100%';
+  img.style.height='100%';
+  img.style.objectFit='cover';
+  img.style.opacity='0';
+  img.style.transition='opacity 1s ease-in-out';
+  img.onerror=()=>{ console.warn(`Image not found: ${file}`); img.style.display='none'; }
+  heroContainer.appendChild(img);
+  heroImages.push(img);
+});
 
-async function loadAllHero(){
-  for(let i=1;i<=TOTAL_HERO;i++){
-    const img=await loadHeroImage(i);
-    heroImages.push(img);
-    heroContainer.appendChild(img);
-  }
-  startHeroSlider();
-}
-
+// Start slideshow when all images loaded
 function startHeroSlider(){
   if(heroImages.length===0) return;
-  heroImages[0].classList.add('active');
-  heroImages[0].style.opacity='1';
+  heroImages[0].classList.add('active'); heroImages[0].style.opacity='1';
   setInterval(()=>{
-    heroImages[heroIndex].classList.remove('active');
-    heroImages[heroIndex].style.opacity='0';
-    heroIndex = (heroIndex+1)%heroImages.length;
-    heroImages[heroIndex].classList.add('active');
-    heroImages[heroIndex].style.opacity='1';
+    heroImages[hIndex].classList.remove('active'); heroImages[hIndex].style.opacity='0';
+    hIndex=(hIndex+1)%heroImages.length;
+    heroImages[hIndex].classList.add('active'); heroImages[hIndex].style.opacity='1';
   },4000);
 }
 
+// Wait DOM ready
 if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded', loadAllHero);
+  document.addEventListener('DOMContentLoaded', startHeroSlider);
 }else{
-  loadAllHero();
+  startHeroSlider();
 }
 </script>
 
