@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ROFO LEGEND Tours</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Segoe UI',sans-serif;background:#f4f7f2;color:#222;}
@@ -15,7 +16,9 @@ nav{
   align-items:center;
   padding:14px 30px;
   background:#012a01;
-  color:gold;
+}
+nav h2 img{
+  height:50px;
 }
 nav ul{display:flex;gap:22px;list-style:none;}
 nav ul li a{color:gold;text-decoration:none;font-weight:500;transition:0.2s;}
@@ -23,7 +26,7 @@ nav ul li a:hover{color:#fff;border-bottom:2px solid gold;}
 
 /* HERO */
 .hero{position:relative;height:80vh;overflow:hidden;display:flex;justify-content:center;align-items:center;}
-.slides{width:100%;height:100%;position:absolute;top:0;left:0;}
+.slides{width:100%;height:100%;position:relative;}
 .slide{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease;}
 .slide.active{opacity:1;}
 
@@ -99,7 +102,7 @@ footer{background:#012a01;color:gold;text-align:center;padding:18px;}
 
 <!-- NAVIGATION -->
 <nav>
-  <h2>ROFO LEGEND</h2>
+  <h2><img src="ROFO LEGEND TOURS.JPEG" alt="ROFO LEGEND Logo"></h2>
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
@@ -137,64 +140,64 @@ footer{background:#012a01;color:gold;text-align:center;padding:18px;}
 <footer>© 2026 ROFO LEGEND Tours</footer>
 
 <script>
-// Your exact filenames here
-const imageFiles = [
-  "1.JPEG",
-  "2.JPEG",
-  "3.JPEG",
-  "4.JPEG",
-  "5.JPEG"
-];
+window.onload = function() {
+  const container = document.querySelector('.slides');
+  const dotsContainer = document.querySelector('.dots-container');
 
-const container = document.querySelector(".slides");
-const dotsContainer = document.querySelector(".dots-container");
-let slides = [];
-let current = 0;
+  // Load only 1.JPEG to 9.JPEG
+  const slides = [];
+  const totalSlides = 9;
 
-// Build slider
-imageFiles.forEach((filename, idx) => {
-  const img = document.createElement("img");
-  img.src = `images/${filename.toLowerCase()}`; // <-- force lowercase for GitHub Pages
-  img.alt = `Slide ${idx+1}`;
-  img.className = "slide";
-  container.appendChild(img);
-  slides.push(img);
+  for(let i=1; i<=totalSlides; i++){
+    const img = document.createElement('img');
+    img.src = `${i}.JPEG`;
+    img.alt = `Slide ${i}`;
+    img.className = 'slide';
+    container.appendChild(img);
+    slides.push(img);
 
-  const dot = document.createElement("div");
-  dot.className = "dot";
-  dot.addEventListener("click",()=>goToSlide(idx));
-  dotsContainer.appendChild(dot);
-});
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    dot.addEventListener('click', ()=>goToSlide(i-1));
+    dotsContainer.appendChild(dot);
+  }
 
-// Activate first slide
-slides[0].classList.add("active");
-dotsContainer.children[0].classList.add("active");
+  // Activate first slide
+  slides[0].classList.add('active');
+  dotsContainer.children[0].classList.add('active');
 
-// Navigation
-function goToSlide(idx){
-  slides[current].classList.remove("active");
-  dotsContainer.children[current].classList.remove("active");
-  current=idx;
-  slides[current].classList.add("active");
-  dotsContainer.children[current].classList.add("active");
-}
-function nextSlide(){ goToSlide((current+1)%slides.length); }
+  let current = 0;
 
-// Arrow clicks
-document.querySelector(".arrow-left").addEventListener("click",()=>goToSlide((current-1+slides.length)%slides.length));
-document.querySelector(".arrow-right").addEventListener("click",nextSlide);
+  function goToSlide(i){
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+  }
 
-// Auto slide
-setInterval(nextSlide,4000);
+  function nextSlide(){
+    goToSlide((current+1)%slides.length);
+  }
 
-// Testimonials
-let t=0;
-const testimonials=document.querySelectorAll(".testimonial");
-setInterval(()=>{
-  testimonials[t].classList.remove("active");
-  t=(t+1)%testimonials.length;
-  testimonials[t].classList.add("active");
-},5000);
+  // Arrows
+  document.querySelector('.arrow-left').addEventListener('click', ()=>{
+    goToSlide((current-1+slides.length)%slides.length);
+  });
+  document.querySelector('.arrow-right').addEventListener('click', nextSlide);
+
+  // Auto slide every 4s
+  setInterval(nextSlide,4000);
+
+  // Testimonials
+  let t=0;
+  const testimonials=document.querySelectorAll('.testimonial');
+  setInterval(()=>{
+    testimonials[t].classList.remove('active');
+    t=(t+1)%testimonials.length;
+    testimonials[t].classList.add('active');
+  },5000);
+};
 </script>
 
 </body>
