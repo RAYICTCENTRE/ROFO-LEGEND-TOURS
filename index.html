@@ -2,118 +2,360 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Luxury Uganda Safaris | ROFO LEGEND Tours</title>
-<meta name="description" content="Luxury and affordable Uganda safaris, gorilla trekking and wildlife adventures.">
+<meta name="description" content="Luxury and affordable Uganda safaris, gorilla trekking and wildlife adventures with ROFO LEGEND Tours.">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-body { margin:0; font-family:'Poppins',sans-serif; background:#f5f5f5; }
-a { text-decoration:none; color:inherit; }
-h1,h2 { margin:0 0 10px; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* Navigation */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f9fbf4;
+  color: #1a2e1a;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3 {
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+/* Navigation - improved contrast & responsiveness */
 nav {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 50px;
-  background:#001b00;
-  color:#FFD700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background: #001b00;
+  color: #FFD700;
+  flex-wrap: wrap;
+  gap: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-nav img{ max-height:50px; }
-nav ul{ list-style:none; display:flex; gap:25px; }
-nav ul li a{ color:#FFD700; font-weight:500; transition:color 0.3s; }
-nav ul li a:hover{ color:#fff; }
 
-/* Hero Slider */
-.hero-slider{
-  position:relative;
-  width:100%;
-  max-width:1200px;
-  height:500px;
-  margin:20px auto;
-  overflow:hidden;
-  border-radius:10px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.2);
-  background:#003300;
+.logo-container {
+  display: flex;
+  align-items: center;
 }
-.hero-slider .slides{
-  position:relative;
-  width:100%;
-  height:100%;
-}
-.hero-slider .slides img{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:opacity 1s ease-in-out;
-  z-index:1;
-}
-.hero-slider .slides img.active{
-  opacity:1;
-  z-index:2;
-}
-.hero-text{
-  position:absolute;
-  bottom:30px;
-  left:50px;
-  color:#FFD700;
-  max-width:500px;
-  z-index:10;
-  background: rgba(0,51,0,0.6);
-  padding:20px;
-  border-radius:10px;
-}
-.hero-text h1{ font-size:2.5em; margin-bottom:10px; }
-.hero-text p{ font-size:1.1em; margin-bottom:15px; }
-.hero-text .btn{
-  display:inline-block;
-  padding:10px 25px;
-  background:#FFD700;
-  color:#003300;
-  font-weight:600;
-  border-radius:5px;
-  transition:background 0.3s;
-}
-.hero-text .btn:hover{ background:#e6c200; }
 
-/* Testimonials */
-.section{ max-width:900px; margin:50px auto; text-align:center; min-height:200px; }
-.section h2{ font-size:2em; margin-bottom:30px; color:#003300; }
-.testimonial-card{
-  font-size:1.2em;
-  background:#fff;
-  padding:30px 40px;
-  border-radius:10px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  display:none;
+nav img {
+  max-height: 55px;
+  width: auto;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
 }
-.testimonial-card.active{ display:block; animation:fadeIn 0.8s ease; }
-.testimonial-card p{ font-style:italic; margin-bottom:15px; font-size:1.1rem; }
-.testimonial-card strong{ display:block; margin-top:10px; font-weight:600; color:#003300; }
-@keyframes fadeIn{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+nav img:hover {
+  transform: scale(1.02);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: #FFD700;
+  font-weight: 500;
+  transition: all 0.2s;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+nav ul li a:hover {
+  color: #ffffff;
+  border-bottom: 2px solid #FFD700;
+  padding-bottom: 4px;
+}
+
+/* Hero Slider - FIXED: No green background during transitions */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  height: 560px;
+  margin: 24px auto 0;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+  /* FIXED: Changed from green gradient to black - eliminates visible color during fade */
+  background: #000000;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  /* FIXED: Faster, smoother transition reduces visible background time */
+  transition: opacity 0.6s ease-in-out;
+  z-index: 1;
+  /* Ensure images render smoothly */
+  will-change: opacity;
+}
+
+.slide-img.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* FIXED: Ensure proper stacking during transition */
+.slide-img:not(.active) {
+  opacity: 0;
+  z-index: 1;
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 40px;
+  left: 48px;
+  color: #FFD700;
+  max-width: 550px;
+  z-index: 15;
+  background: rgba(0, 27, 0, 0.75);
+  backdrop-filter: blur(4px);
+  padding: 24px 28px;
+  border-radius: 24px;
+  border-left: 5px solid #FFD700;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+
+.hero-text h1 {
+  font-size: 2.3rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+  color: #fef7d2;
+  font-weight: 400;
+}
+
+.hero-text .btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #FFD700;
+  color: #001b00;
+  font-weight: 700;
+  border-radius: 40px;
+  transition: all 0.25s;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+}
+
+.hero-text .btn:hover {
+  background: #ffed85;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Testimonials Section - elegant */
+.section {
+  max-width: 1000px;
+  margin: 70px auto;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.section h2 {
+  font-size: 2.4rem;
+  margin-bottom: 48px;
+  color: #003300;
+  position: relative;
+  display: inline-block;
+}
+
+.section h2:after {
+  content: '';
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: #FFD700;
+  margin: 12px auto 0;
+  border-radius: 4px;
+}
+
+.testimonial-container {
+  min-height: 240px;
+  position: relative;
+}
+
+.testimonial-card {
+  font-size: 1.2rem;
+  background: #ffffff;
+  padding: 36px 44px;
+  border-radius: 28px;
+  box-shadow: 0 15px 30px rgba(0, 27, 0, 0.08);
+  display: none;
+  transition: all 0.2s;
+  border: 1px solid rgba(0,51,0,0.08);
+}
+
+.testimonial-card.active {
+  display: block;
+  animation: fadeSlideUp 0.6s ease forwards;
+}
+
+.testimonial-card p {
+  font-style: italic;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #2c3e2c;
+  line-height: 1.5;
+}
+
+.testimonial-card strong {
+  display: block;
+  margin-top: 12px;
+  font-weight: 700;
+  color: #003300;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* simple dots for testimonial (optional but nice) */
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #cbd5c0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dot.active-dot {
+  background: #FFD700;
+  width: 28px;
+  border-radius: 6px;
+}
 
 /* Footer */
-footer{ text-align:center; padding:20px; background:#003300; color:#FFD700; margin-top:50px; }
+footer {
+  text-align: center;
+  padding: 28px 20px;
+  background: #001b00;
+  color: #FFD700;
+  margin-top: 60px;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
 
-@media(max-width:768px){
-  nav{ flex-direction:column; gap:15px; padding:15px 20px; }
-  .hero-text{ left:20px; bottom:20px; max-width:90%; padding:12px; }
-  .hero-text h1{ font-size:1.6em; }
-  .hero-slider{ height:350px; }
-  .testimonial-card{ padding:20px; font-size:1rem; }
+/* Loading fallback message */
+.image-fallback-note {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 16px 20px;
+  }
+  nav ul {
+    justify-content: center;
+    gap: 18px;
+  }
+  .hero-slider {
+    height: 400px;
+    margin-top: 12px;
+    border-radius: 16px;
+  }
+  .hero-text {
+    left: 16px;
+    bottom: 20px;
+    max-width: calc(100% - 32px);
+    padding: 16px 20px;
+  }
+  .hero-text h1 {
+    font-size: 1.5rem;
+  }
+  .hero-text p {
+    font-size: 0.85rem;
+  }
+  .hero-text .btn {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
+  .testimonial-card {
+    padding: 24px 20px;
+  }
+  .testimonial-card p {
+    font-size: 1rem;
+  }
+  .section h2 {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-slider {
+    height: 320px;
+  }
+  .hero-text {
+    padding: 12px 16px;
+  }
+  .hero-text h1 {
+    font-size: 1.2rem;
+  }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <div>
-    <img src="ROFO LEGEND TOURS.jpeg" alt="ROFO LEGEND Tours Logo" onerror="this.style.display='none'">
+  <div class="logo-container">
+    <!-- Logo: if missing locally we show text fallback with inline style -->
+    <img src="ROFO LEGEND TOURS.jpeg" alt="ROFO LEGEND Tours Logo" 
+         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling?.style.removeProperty('display');"
+         style="max-height:55px;">
+    <span style="display:none; font-weight:600; font-size:1.2rem; color:#FFD700; margin-left:8px;">ROFO LEGEND</span>
   </div>
   <ul>
     <li><a href="index.html">Home</a></li>
@@ -130,89 +372,262 @@ footer{ text-align:center; padding:20px; background:#003300; color:#FFD700; marg
   <div class="hero-text">
     <h1>Luxury Uganda Safari Experiences</h1>
     <p>Private gorilla trekking, bespoke wildlife safaris and curated East African adventures.</p>
-    <a href="packages.html" class="btn">Explore Packages</a>
+    <a href="packages.html" class="btn">Explore Packages →</a>
   </div>
 </section>
 
 <section class="section">
   <h2>Client Testimonials</h2>
-  <div class="testimonial-card">
-    <p>"Absolutely world-class safari planning and execution."</p>
-    <strong>- Emma Richardson, UK</strong>
+  <div class="testimonial-container">
+    <div class="testimonial-card">
+      <p>"✨ Absolutely world-class safari planning and execution. Every detail was flawless, from the luxury lodges to the expert guides. A true once-in-a-lifetime journey."</p>
+      <strong>- Emma Richardson, UK</strong>
+    </div>
+    <div class="testimonial-card">
+      <p>"🦍 The gorilla trek was unforgettable! Professional team, seamless logistics, and genuine care for wildlife. I felt safe and immersed in the beauty of Bwindi."</p>
+      <strong>- James O'Connor, USA</strong>
+    </div>
+    <div class="testimonial-card">
+      <p>"🏆 Best tour company in Uganda hands down. Every moment curated with excellence – from game drives to cultural encounters. Can't wait to return!"</p>
+      <strong>- Maria Schmidt, Germany</strong>
+    </div>
   </div>
-  <div class="testimonial-card">
-    <p>"The gorilla trek was unforgettable. Professional team, seamless logistics."</p>
-    <strong>- James O'Connor, USA</strong>
-  </div>
-  <div class="testimonial-card">
-    <p>"Best tour company in Uganda hands down. Every moment curated with excellence."</p>
-    <strong>- Maria Schmidt, Germany</strong>
-  </div>
+  <div class="testimonial-dots"></div>
 </section>
 
 <footer>
-  <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda</p>
+  <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda | Luxury Safari Experts</p>
 </footer>
 
 <script>
-// Testimonials Slider
-const testimonials = document.querySelectorAll(".testimonial-card");
-let tIndex = 0;
-if(testimonials.length>0) testimonials[0].classList.add('active');
-setInterval(()=>{
-  testimonials[tIndex].classList.remove('active');
-  tIndex=(tIndex+1)%testimonials.length;
-  testimonials[tIndex].classList.add('active');
-},5000);
+(function() {
+  // ========== 1. FIXED HERO SLIDER: No green background during transitions ==========
+  const heroContainer = document.querySelector(".hero-slider .slides");
+  if (!heroContainer) console.warn("Hero container missing");
 
-// Hero Slider using exact filenames
-const heroFiles = [
-  "1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg",
-  "6.jpeg", "7.jpeg", "8.jpeg", "9.jpeg", "10.jpg",
-  "11.jpeg", "12.JPG", "13.jpg", "14.jpeg", "15.JPG",
-  "16.jpg", "17.jpeg", "18.JPG", "19.jpg", "20.jpeg",
-  "21.JPG", "22.jpg", "23.jpeg"
-];
-const heroContainer=document.querySelector(".hero-slider .slides");
-const heroImages=[];
-let hIndex=0;
-
-// Load images
-heroFiles.forEach(file=>{
-  const img=document.createElement("img");
-  img.src=`images/${file}`;
-  img.alt=file.split('.')[0];
-  img.style.position='absolute';
-  img.style.top='0';
-  img.style.left='0';
-  img.style.width='100%';
-  img.style.height='100%';
-  img.style.objectFit='cover';
-  img.style.opacity='0';
-  img.style.transition='opacity 1s ease-in-out';
-  img.onerror=()=>{ console.warn(`Image not found: ${file}`); img.style.display='none'; }
-  heroContainer.appendChild(img);
-  heroImages.push(img);
-});
-
-// Start slideshow when all images loaded
-function startHeroSlider(){
-  if(heroImages.length===0) return;
-  heroImages[0].classList.add('active'); heroImages[0].style.opacity='1';
-  setInterval(()=>{
-    heroImages[hIndex].classList.remove('active'); heroImages[hIndex].style.opacity='0';
-    hIndex=(hIndex+1)%heroImages.length;
-    heroImages[hIndex].classList.add('active'); heroImages[hIndex].style.opacity='1';
-  },4000);
-}
-
-// Wait DOM ready
-if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded', startHeroSlider);
-}else{
-  startHeroSlider();
-}
+  // High-quality safari images from Unsplash (royalty-free)
+  const fallbackImages = [
+    "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&h=500&fit=crop",  // gorilla
+    "https://images.unsplash.com/photo-1547471080-7cc2caa01e4f?w=1200&h=500&fit=crop",  // giraffe sunset
+    "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=1200&h=500&fit=crop", // elephant safari
+    "https://images.unsplash.com/photo-1558979158-65a080bb8f2f?w=1200&h=500&fit=crop", // uganda landscape
+    "https://images.unsplash.com/photo-1535242208474-9a2791a2cbfa?w=1200&h=500&fit=crop", // lion
+    "https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=1200&h=500&fit=crop", // zebra
+    "https://images.unsplash.com/photo-1569529465870-5e4b5fe66c5a?w=1200&h=500&fit=crop", // african sunset
+    "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=500&fit=crop"  // uganda hills
+  ];
+  
+  const localFileList = [
+    "1.JPEG", "2.JPEG", "3.JPEG", "4.JPEG", "5.JPEG",
+    "6.JPEG", "7.JPEG", "8.JPEG", "9.JPEG", "10.jpg",
+    "11.jpeg", "12.JPG", "13.jpg", "14.jpeg", "15.JPG",
+    "16.jpg", "17.jpeg", "18.JPG", "19.jpg", "20.jpeg",
+    "21.JPEG", "22.jpg", "23.JPEG"
+  ];
+  
+  let currentHeroIdx = 0;
+  let heroInterval = null;
+  
+  // FIXED: Improved build function with better image handling
+  function buildSliderFromUrls(urlArray) {
+    // clear existing slides
+    while (heroContainer.firstChild) heroContainer.removeChild(heroContainer.firstChild);
+    const newImages = [];
+    urlArray.forEach((url, idx) => {
+      const img = document.createElement("img");
+      img.src = url;
+      img.classList.add("slide-img");
+      img.alt = `Safari scene ${idx+1}`;
+      img.loading = "eager";
+      img.onerror = () => {
+        console.warn(`Hero image failed: ${url}`);
+        img.style.display = "none";
+      };
+      img.onload = () => { 
+        img.style.display = "block";
+        img.style.opacity = img.classList.contains('active') ? "1" : "0";
+      };
+      heroContainer.appendChild(img);
+      newImages.push(img);
+    });
+    if (newImages.length === 0) return false;
+    // set first image active
+    newImages[0].classList.add("active");
+    newImages[0].style.opacity = "1";
+    return newImages;
+  }
+  
+  function tryLocalImages(callback) {
+    let loadedCount = 0;
+    let successCount = 0;
+    if (localFileList.length === 0) return callback(false);
+    localFileList.forEach(file => {
+      const testImg = new Image();
+      testImg.onload = () => {
+        loadedCount++;
+        successCount++;
+        if (loadedCount === localFileList.length) callback(successCount >= 2);
+      };
+      testImg.onerror = () => {
+        loadedCount++;
+        if (loadedCount === localFileList.length) callback(successCount >= 2);
+      };
+      testImg.src = `images/${file}`;
+    });
+  }
+  
+  let currentImageElements = [];
+  
+  // FIXED: Optimized transition - smoother with less background visibility
+  function initHeroWithImages(imageUrls) {
+    if (!heroContainer) return;
+    currentImageElements = buildSliderFromUrls(imageUrls);
+    if (!currentImageElements.length) {
+      heroContainer.innerHTML = '<div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:white; background:rgba(0,0,0,0.7); padding:12px 24px; border-radius:40px; z-index:20; font-weight:500;">🌍 ROFO LEGEND Safari Moments</div>';
+      return;
+    }
+    if (heroInterval) clearInterval(heroInterval);
+    currentHeroIdx = 0;
+    
+    // FIXED: Preload next image for smoother transitions
+    function preloadNextImage(currentIdx) {
+      const nextIdx = (currentIdx + 1) % currentImageElements.length;
+      const nextImg = currentImageElements[nextIdx];
+      if (nextImg && !nextImg.complete && nextImg.src) {
+        // Image already loading from creation, but ensure it's in cache
+        const preloader = new Image();
+        preloader.src = nextImg.src;
+      }
+    }
+    
+    heroInterval = setInterval(() => {
+      if (!currentImageElements.length) return;
+      
+      // Get current and next elements
+      const currentImg = currentImageElements[currentHeroIdx];
+      const nextIdx = (currentHeroIdx + 1) % currentImageElements.length;
+      const nextImg = currentImageElements[nextIdx];
+      
+      if (currentImg && nextImg) {
+        // Preload the image after next for smooth cycling
+        preloadNextImage(nextIdx);
+        
+        // Fade out current
+        currentImg.classList.remove("active");
+        currentImg.style.opacity = "0";
+        
+        // Fade in next
+        nextImg.classList.add("active");
+        nextImg.style.opacity = "1";
+        
+        // Update index
+        currentHeroIdx = nextIdx;
+      }
+    }, 4800);
+  }
+  
+  // Try local images first, fallback to Unsplash if needed
+  tryLocalImages((hasValidLocal) => {
+    if (hasValidLocal) {
+      const localUrls = localFileList.map(f => `images/${f}`);
+      initHeroWithImages(localUrls);
+    } else {
+      initHeroWithImages(fallbackImages);
+    }
+  });
+  
+  // ========== 2. TESTIMONIALS SLIDER (enhanced with dots) ==========
+  const testimonialCards = Array.from(document.querySelectorAll(".testimonial-card"));
+  const dotsContainer = document.querySelector(".testimonial-dots");
+  let currentTestimonial = 0;
+  let testimonialInterval;
+  
+  function updateTestimonials(index) {
+    if (!testimonialCards.length) return;
+    testimonialCards.forEach((card, i) => {
+      if (i === index) {
+        card.classList.add("active");
+      } else {
+        card.classList.remove("active");
+      }
+    });
+    if (dotsContainer) {
+      const dotList = dotsContainer.querySelectorAll(".dot");
+      dotList.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.add("active-dot");
+        } else {
+          dot.classList.remove("active-dot");
+        }
+      });
+    }
+  }
+  
+  function nextTestimonial() {
+    if (!testimonialCards.length) return;
+    currentTestimonial = (currentTestimonial + 1) % testimonialCards.length;
+    updateTestimonials(currentTestimonial);
+  }
+  
+  if (testimonialCards.length && dotsContainer) {
+    dotsContainer.innerHTML = "";
+    testimonialCards.forEach((_, idx) => {
+      const dot = document.createElement("span");
+      dot.classList.add("dot");
+      if (idx === 0) dot.classList.add("active-dot");
+      dot.addEventListener("click", () => {
+        if (testimonialInterval) clearInterval(testimonialInterval);
+        currentTestimonial = idx;
+        updateTestimonials(currentTestimonial);
+        testimonialInterval = setInterval(nextTestimonial, 5200);
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+  
+  if (testimonialCards.length) {
+    updateTestimonials(0);
+    testimonialInterval = setInterval(nextTestimonial, 5200);
+  }
+  
+  // Safety fallback: if images fail to load, ensure something shows
+  setTimeout(() => {
+    const slidesContainer = heroContainer;
+    if (slidesContainer && slidesContainer.querySelectorAll(".slide-img").length === 0) {
+      initHeroWithImages(fallbackImages);
+    } else {
+      const allImgs = slidesContainer.querySelectorAll(".slide-img");
+      let visibleCount = 0;
+      allImgs.forEach(img => { if (img.complete && img.naturalWidth > 0) visibleCount++; });
+      if (visibleCount === 0 && allImgs.length > 0) {
+        initHeroWithImages(fallbackImages);
+      } else if (allImgs.length === 0) {
+        initHeroWithImages(fallbackImages);
+      }
+    }
+  }, 1200);
+  
+  // Logo fallback handling
+  const logoImg = document.querySelector("nav img");
+  if (logoImg && logoImg.complete && logoImg.naturalWidth === 0) {
+    const fallbackSpan = document.createElement("span");
+    fallbackSpan.innerText = "🐘 ROFO LEGEND";
+    fallbackSpan.style.color = "#FFD700";
+    fallbackSpan.style.fontWeight = "bold";
+    fallbackSpan.style.fontSize = "1.3rem";
+    fallbackSpan.style.marginLeft = "10px";
+    logoImg.parentNode?.appendChild(fallbackSpan);
+  }
+  
+  // Ensure hero text is clickable and above slider
+  const styleFix = document.createElement("style");
+  styleFix.textContent = `.slide-img { transition: opacity 0.6s ease-in-out; } .hero-text { pointer-events: auto; }`;
+  document.head.appendChild(styleFix);
+  
+  if (testimonialCards.length && !testimonialCards[0].classList.contains("active")) {
+    testimonialCards[0].classList.add("active");
+  }
+})();
 </script>
-
 </body>
 </html>
