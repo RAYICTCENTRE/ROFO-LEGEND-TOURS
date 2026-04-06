@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ROFO LEGEND Tours</title>
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Segoe UI',sans-serif;background:#f4f7f2;color:#222;}
@@ -91,12 +90,9 @@ nav ul li a:hover{color:#fff;border-bottom:2px solid gold;}
 /* FOOTER */
 footer{background:#012a01;color:gold;text-align:center;padding:18px;}
 
-/* WHATSAPP BUTTON */
-.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:12px 18px;border-radius:50px;text-decoration:none;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
-
 /* RESPONSIVE */
-@media(max-width:768px){.hero-text h1{font-size:22px;}.btn{padding:6px 14px;font-size:0.9rem;}}
-@media(max-width:480px){.hero{height:60vh;}.hero-text{padding:14px 20px;}.hero-text h1{font-size:18px;}}
+@media(max-width:768px){.hero-text h1{font-size:22px;}.btn{padding:6px 14px;font-size:0.9rem;} }
+@media(max-width:480px){.hero{height:60vh;}.hero-text{padding:14px 20px;}.hero-text h1{font-size:18px;} }
 </style>
 </head>
 <body>
@@ -139,44 +135,42 @@ footer{background:#012a01;color:gold;text-align:center;padding:18px;}
 </section>
 
 <footer>© 2026 ROFO LEGEND Tours</footer>
-<a class="whatsapp" href="https://wa.me/256700000000">Chat</a>
 
 <script>
-// HERO SLIDER
+// Your exact filenames here
+const imageFiles = [
+  "1.JPEG",
+  "2.JPEG",
+  "3.JPEG",
+  "4.JPEG",
+  "5.JPEG"
+];
+
 const container = document.querySelector(".slides");
-const total = 23; // number of images
-const exts = ["jpg","jpeg"];
+const dotsContainer = document.querySelector(".dots-container");
 let slides = [];
 let current = 0;
-const dotsContainer = document.querySelector(".dots-container");
 
-// Create slides
-for(let i=1;i<=total;i++){
-  let img = document.createElement("img");
-  img.className="slide";
-  let extIndex=0;
-  function tryLoad(){
-    if(extIndex>=exts.length){ img.remove(); return; }
-    img.src=`images/${i}.${exts[extIndex++]}`;
-  }
-  img.onerror=tryLoad;
-  tryLoad();
+// Build slider
+imageFiles.forEach((filename, idx) => {
+  const img = document.createElement("img");
+  img.src = `images/${filename.toLowerCase()}`; // <-- force lowercase for GitHub Pages
+  img.alt = `Slide ${idx+1}`;
+  img.className = "slide";
   container.appendChild(img);
   slides.push(img);
 
-  // Create dots
   const dot = document.createElement("div");
-  dot.className="dot";
-  dot.addEventListener("click",()=>{goToSlide(i-1)});
+  dot.className = "dot";
+  dot.addEventListener("click",()=>goToSlide(idx));
   dotsContainer.appendChild(dot);
-}
+});
 
-// Activate first slide & dot
-setTimeout(()=>{
-  if(slides.length){slides[0].classList.add("active");dotsContainer.children[0].classList.add("active");}
-},500);
+// Activate first slide
+slides[0].classList.add("active");
+dotsContainer.children[0].classList.add("active");
 
-// Slider functions
+// Navigation
 function goToSlide(idx){
   slides[current].classList.remove("active");
   dotsContainer.children[current].classList.remove("active");
@@ -184,19 +178,16 @@ function goToSlide(idx){
   slides[current].classList.add("active");
   dotsContainer.children[current].classList.add("active");
 }
+function nextSlide(){ goToSlide((current+1)%slides.length); }
 
-function nextSlide(){
-  goToSlide((current+1)%slides.length);
-}
-
-// Arrows
-document.querySelector(".arrow-left").addEventListener("click",()=>{goToSlide((current-1+slides.length)%slides.length);});
+// Arrow clicks
+document.querySelector(".arrow-left").addEventListener("click",()=>goToSlide((current-1+slides.length)%slides.length));
 document.querySelector(".arrow-right").addEventListener("click",nextSlide);
 
 // Auto slide
 setInterval(nextSlide,4000);
 
-// TESTIMONIALS
+// Testimonials
 let t=0;
 const testimonials=document.querySelectorAll(".testimonial");
 setInterval(()=>{
