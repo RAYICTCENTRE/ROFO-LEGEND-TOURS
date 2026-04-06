@@ -2,361 +2,108 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Luxury Uganda Safaris | ROFO LEGEND Tours</title>
-<meta name="description" content="Luxury and affordable Uganda safaris, gorilla trekking and wildlife adventures with ROFO LEGEND Tours.">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROFO LEGEND Tours</title>
+
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',sans-serif;background:#f4f7f2;color:#222;}
 
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #f9fbf4;
-  color: #1a2e1a;
-  line-height: 1.5;
+/* NAVBAR */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 30px;
+  background:#012a01;
+  color:gold;
 }
+nav ul{display:flex;gap:22px;list-style:none;}
+nav ul li a{color:gold;text-decoration:none;font-weight:500;transition:0.2s;}
+nav ul li a:hover{color:#fff;border-bottom:2px solid gold;}
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+/* HERO */
+.hero{position:relative;height:80vh;overflow:hidden;display:flex;justify-content:center;align-items:center;}
+.slides{width:100%;height:100%;position:absolute;top:0;left:0;}
+.slide{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease;}
+.slide.active{opacity:1;}
 
-h1, h2, h3 {
-  margin: 0 0 10px;
-  font-weight: 600;
+/* ARROWS */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,30,0,0.5);
+  color:gold;
+  font-size:2rem;
+  padding:8px 12px;
+  cursor:pointer;
+  border-radius:6px;
+  user-select:none;
+  transition:background 0.3s;
+  z-index:10;
 }
+.arrow:hover{background:rgba(0,30,0,0.8);}
+.arrow-left{left:20px;}
+.arrow-right{right:20px;}
 
-/* Navigation - improved contrast & responsiveness */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 40px;
-  background: #001b00;
-  color: #FFD700;
-  flex-wrap: wrap;
-  gap: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+/* DOTS */
+.dots-container{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+  z-index:10;
 }
+.dot{
+  width:12px;height:12px;
+  background:rgba(255,215,0,0.5);
+  border-radius:50%;
+  cursor:pointer;
+  transition:all 0.3s;
+}
+.dot.active{width:16px;height:16px;background:gold;}
 
-.logo-container {
-  display: flex;
-  align-items: center;
+/* HERO TEXT */
+.hero-text{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,30,0,0.75);
+  color:gold;
+  padding:18px 28px;
+  border-radius:12px;
+  backdrop-filter:blur(6px);
+  text-align:center;
 }
+.hero-text h1{font-size:28px;margin-bottom:10px;}
+.btn{display:inline-block;margin-top:10px;padding:8px 18px;background:gold;color:black;border-radius:20px;text-decoration:none;font-weight:bold;}
 
-nav img {
-  max-height: 55px;
-  width: auto;
-  border-radius: 6px;
-  transition: transform 0.2s ease;
-}
+/* TESTIMONIALS */
+.section{padding:35px 20px;text-align:center;}
+.testimonial-box{background:white;padding:18px;border-radius:12px;max-width:600px;margin:10px auto;box-shadow:0 8px 20px rgba(0,0,0,0.08);}
+.testimonial{display:none;font-style:italic;}
+.testimonial.active{display:block;}
 
-nav img:hover {
-  transform: scale(1.02);
-}
+/* FOOTER */
+footer{background:#012a01;color:gold;text-align:center;padding:18px;}
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 28px;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-}
+/* WHATSAPP BUTTON */
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:12px 18px;border-radius:50px;text-decoration:none;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
 
-nav ul li a {
-  color: #FFD700;
-  font-weight: 500;
-  transition: all 0.2s;
-  font-size: 1rem;
-  letter-spacing: 0.3px;
-}
-
-nav ul li a:hover {
-  color: #ffffff;
-  border-bottom: 2px solid #FFD700;
-  padding-bottom: 4px;
-}
-
-/* Hero Slider - FIXED: No green background during transitions */
-.hero-slider {
-  position: relative;
-  width: 100%;
-  max-width: 1400px;
-  height: 560px;
-  margin: 24px auto 0;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
-  /* FIXED: Changed from green gradient to black - eliminates visible color during fade */
-  background: #000000;
-}
-
-.slides {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.slide-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  /* FIXED: Faster, smoother transition reduces visible background time */
-  transition: opacity 0.6s ease-in-out;
-  z-index: 1;
-  /* Ensure images render smoothly */
-  will-change: opacity;
-}
-
-.slide-img.active {
-  opacity: 1;
-  z-index: 2;
-}
-
-/* FIXED: Ensure proper stacking during transition */
-.slide-img:not(.active) {
-  opacity: 0;
-  z-index: 1;
-}
-
-.hero-text {
-  position: absolute;
-  bottom: 40px;
-  left: 48px;
-  color: #FFD700;
-  max-width: 550px;
-  z-index: 15;
-  background: rgba(0, 27, 0, 0.75);
-  backdrop-filter: blur(4px);
-  padding: 24px 28px;
-  border-radius: 24px;
-  border-left: 5px solid #FFD700;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-}
-
-.hero-text h1 {
-  font-size: 2.3rem;
-  margin-bottom: 12px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-}
-
-.hero-text p {
-  font-size: 1.1rem;
-  margin-bottom: 18px;
-  color: #fef7d2;
-  font-weight: 400;
-}
-
-.hero-text .btn {
-  display: inline-block;
-  padding: 12px 28px;
-  background: #FFD700;
-  color: #001b00;
-  font-weight: 700;
-  border-radius: 40px;
-  transition: all 0.25s;
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
-  border: none;
-  cursor: pointer;
-}
-
-.hero-text .btn:hover {
-  background: #ffed85;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-}
-
-/* Testimonials Section - elegant */
-.section {
-  max-width: 1000px;
-  margin: 70px auto;
-  text-align: center;
-  padding: 0 24px;
-}
-
-.section h2 {
-  font-size: 2.4rem;
-  margin-bottom: 48px;
-  color: #003300;
-  position: relative;
-  display: inline-block;
-}
-
-.section h2:after {
-  content: '';
-  display: block;
-  width: 70px;
-  height: 4px;
-  background: #FFD700;
-  margin: 12px auto 0;
-  border-radius: 4px;
-}
-
-.testimonial-container {
-  min-height: 240px;
-  position: relative;
-}
-
-.testimonial-card {
-  font-size: 1.2rem;
-  background: #ffffff;
-  padding: 36px 44px;
-  border-radius: 28px;
-  box-shadow: 0 15px 30px rgba(0, 27, 0, 0.08);
-  display: none;
-  transition: all 0.2s;
-  border: 1px solid rgba(0,51,0,0.08);
-}
-
-.testimonial-card.active {
-  display: block;
-  animation: fadeSlideUp 0.6s ease forwards;
-}
-
-.testimonial-card p {
-  font-style: italic;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-  color: #2c3e2c;
-  line-height: 1.5;
-}
-
-.testimonial-card strong {
-  display: block;
-  margin-top: 12px;
-  font-weight: 700;
-  color: #003300;
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-}
-
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* simple dots for testimonial (optional but nice) */
-.testimonial-dots {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  background: #cbd5c0;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.dot.active-dot {
-  background: #FFD700;
-  width: 28px;
-  border-radius: 6px;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 28px 20px;
-  background: #001b00;
-  color: #FFD700;
-  margin-top: 60px;
-  font-size: 0.9rem;
-  font-weight: 400;
-}
-
-/* Loading fallback message */
-.image-fallback-note {
-  display: none;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    padding: 16px 20px;
-  }
-  nav ul {
-    justify-content: center;
-    gap: 18px;
-  }
-  .hero-slider {
-    height: 400px;
-    margin-top: 12px;
-    border-radius: 16px;
-  }
-  .hero-text {
-    left: 16px;
-    bottom: 20px;
-    max-width: calc(100% - 32px);
-    padding: 16px 20px;
-  }
-  .hero-text h1 {
-    font-size: 1.5rem;
-  }
-  .hero-text p {
-    font-size: 0.85rem;
-  }
-  .hero-text .btn {
-    padding: 8px 20px;
-    font-size: 0.8rem;
-  }
-  .testimonial-card {
-    padding: 24px 20px;
-  }
-  .testimonial-card p {
-    font-size: 1rem;
-  }
-  .section h2 {
-    font-size: 1.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-slider {
-    height: 320px;
-  }
-  .hero-text {
-    padding: 12px 16px;
-  }
-  .hero-text h1 {
-    font-size: 1.2rem;
-  }
-}
+/* RESPONSIVE */
+@media(max-width:768px){.hero-text h1{font-size:22px;}.btn{padding:6px 14px;font-size:0.9rem;}}
+@media(max-width:480px){.hero{height:60vh;}.hero-text{padding:14px 20px;}.hero-text h1{font-size:18px;}}
 </style>
 </head>
 <body>
 
+<!-- NAVIGATION -->
 <nav>
-  <div class="logo-container">
-    <!-- Logo: if missing locally we show text fallback with inline style -->
-    <img src="ROFO LEGEND TOURS.jpeg" alt="ROFO LEGEND Tours Logo" 
-         onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling?.style.removeProperty('display');"
-         style="max-height:55px;">
-    <span style="display:none; font-weight:600; font-size:1.2rem; color:#FFD700; margin-left:8px;">ROFO LEGEND</span>
-  </div>
+  <h2>ROFO LEGEND</h2>
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
@@ -367,267 +114,97 @@ footer {
   </ul>
 </nav>
 
-<section class="hero-slider">
+<!-- HERO SLIDER -->
+<section class="hero">
   <div class="slides"></div>
+  <div class="arrow arrow-left">&#10094;</div>
+  <div class="arrow arrow-right">&#10095;</div>
+  <div class="dots-container"></div>
+
   <div class="hero-text">
-    <h1>Luxury Uganda Safari Experiences</h1>
-    <p>Private gorilla trekking, bespoke wildlife safaris and curated East African adventures.</p>
-    <a href="packages.html" class="btn">Explore Packages →</a>
+    <h1>Luxury Uganda Safaris</h1>
+    <p>Gorilla trekking • Wildlife • Culture</p>
+    <a href="packages.html" class="btn">Explore Packages</a>
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
 <section class="section">
-  <h2>Client Testimonials</h2>
-  <div class="testimonial-container">
-    <div class="testimonial-card">
-      <p>"✨ Absolutely world-class safari planning and execution. Every detail was flawless, from the luxury lodges to the expert guides. A true once-in-a-lifetime journey."</p>
-      <strong>- Emma Richardson, UK</strong>
-    </div>
-    <div class="testimonial-card">
-      <p>"🦍 The gorilla trek was unforgettable! Professional team, seamless logistics, and genuine care for wildlife. I felt safe and immersed in the beauty of Bwindi."</p>
-      <strong>- James O'Connor, USA</strong>
-    </div>
-    <div class="testimonial-card">
-      <p>"🏆 Best tour company in Uganda hands down. Every moment curated with excellence – from game drives to cultural encounters. Can't wait to return!"</p>
-      <strong>- Maria Schmidt, Germany</strong>
-    </div>
+  <h2>Testimonials</h2>
+  <div class="testimonial-box">
+    <div class="testimonial active">“Best safari experience ever!”</div>
+    <div class="testimonial">“The gorilla trekking was unforgettable.”</div>
+    <div class="testimonial">“Professional team and seamless planning.”</div>
   </div>
-  <div class="testimonial-dots"></div>
 </section>
 
-<footer>
-  <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda | Luxury Safari Experts</p>
-</footer>
+<footer>© 2026 ROFO LEGEND Tours</footer>
+<a class="whatsapp" href="https://wa.me/256700000000">Chat</a>
 
 <script>
-(function() {
-  // ========== 1. FIXED HERO SLIDER: No green background during transitions ==========
-  const heroContainer = document.querySelector(".hero-slider .slides");
-  if (!heroContainer) console.warn("Hero container missing");
+// HERO SLIDER
+const container = document.querySelector(".slides");
+const total = 23; // number of images
+const exts = ["jpg","jpeg"];
+let slides = [];
+let current = 0;
+const dotsContainer = document.querySelector(".dots-container");
 
-  // High-quality safari images from Unsplash (royalty-free)
-  const fallbackImages = [
-    "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&h=500&fit=crop",  // gorilla
-    "https://images.unsplash.com/photo-1547471080-7cc2caa01e4f?w=1200&h=500&fit=crop",  // giraffe sunset
-    "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=1200&h=500&fit=crop", // elephant safari
-    "https://images.unsplash.com/photo-1558979158-65a080bb8f2f?w=1200&h=500&fit=crop", // uganda landscape
-    "https://images.unsplash.com/photo-1535242208474-9a2791a2cbfa?w=1200&h=500&fit=crop", // lion
-    "https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=1200&h=500&fit=crop", // zebra
-    "https://images.unsplash.com/photo-1569529465870-5e4b5fe66c5a?w=1200&h=500&fit=crop", // african sunset
-    "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=500&fit=crop"  // uganda hills
-  ];
-  
-  const localFileList = [
-    "1.JPEG", "2.JPEG", "3.JPEG", "4.JPEG", "5.JPEG",
-    "6.JPEG", "7.JPEG", "8.JPEG", "9.JPEG", "10.jpg",
-    "11.jpeg", "12.JPG", "13.jpg", "14.jpeg", "15.JPG",
-    "16.jpg", "17.jpeg", "18.JPG", "19.jpg", "20.jpeg",
-    "21.JPEG", "22.jpg", "23.JPEG"
-  ];
-  
-  let currentHeroIdx = 0;
-  let heroInterval = null;
-  
-  // FIXED: Improved build function with better image handling
-  function buildSliderFromUrls(urlArray) {
-    // clear existing slides
-    while (heroContainer.firstChild) heroContainer.removeChild(heroContainer.firstChild);
-    const newImages = [];
-    urlArray.forEach((url, idx) => {
-      const img = document.createElement("img");
-      img.src = url;
-      img.classList.add("slide-img");
-      img.alt = `Safari scene ${idx+1}`;
-      img.loading = "eager";
-      img.onerror = () => {
-        console.warn(`Hero image failed: ${url}`);
-        img.style.display = "none";
-      };
-      img.onload = () => { 
-        img.style.display = "block";
-        img.style.opacity = img.classList.contains('active') ? "1" : "0";
-      };
-      heroContainer.appendChild(img);
-      newImages.push(img);
-    });
-    if (newImages.length === 0) return false;
-    // set first image active
-    newImages[0].classList.add("active");
-    newImages[0].style.opacity = "1";
-    return newImages;
+// Create slides
+for(let i=1;i<=total;i++){
+  let img = document.createElement("img");
+  img.className="slide";
+  let extIndex=0;
+  function tryLoad(){
+    if(extIndex>=exts.length){ img.remove(); return; }
+    img.src=`images/${i}.${exts[extIndex++]}`;
   }
-  
-  function tryLocalImages(callback) {
-    let loadedCount = 0;
-    let successCount = 0;
-    if (localFileList.length === 0) return callback(false);
-    localFileList.forEach(file => {
-      const testImg = new Image();
-      testImg.onload = () => {
-        loadedCount++;
-        successCount++;
-        if (loadedCount === localFileList.length) callback(successCount >= 2);
-      };
-      testImg.onerror = () => {
-        loadedCount++;
-        if (loadedCount === localFileList.length) callback(successCount >= 2);
-      };
-      testImg.src = `images/${file}`;
-    });
-  }
-  
-  let currentImageElements = [];
-  
-  // FIXED: Optimized transition - smoother with less background visibility
-  function initHeroWithImages(imageUrls) {
-    if (!heroContainer) return;
-    currentImageElements = buildSliderFromUrls(imageUrls);
-    if (!currentImageElements.length) {
-      heroContainer.innerHTML = '<div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:white; background:rgba(0,0,0,0.7); padding:12px 24px; border-radius:40px; z-index:20; font-weight:500;">🌍 ROFO LEGEND Safari Moments</div>';
-      return;
-    }
-    if (heroInterval) clearInterval(heroInterval);
-    currentHeroIdx = 0;
-    
-    // FIXED: Preload next image for smoother transitions
-    function preloadNextImage(currentIdx) {
-      const nextIdx = (currentIdx + 1) % currentImageElements.length;
-      const nextImg = currentImageElements[nextIdx];
-      if (nextImg && !nextImg.complete && nextImg.src) {
-        // Image already loading from creation, but ensure it's in cache
-        const preloader = new Image();
-        preloader.src = nextImg.src;
-      }
-    }
-    
-    heroInterval = setInterval(() => {
-      if (!currentImageElements.length) return;
-      
-      // Get current and next elements
-      const currentImg = currentImageElements[currentHeroIdx];
-      const nextIdx = (currentHeroIdx + 1) % currentImageElements.length;
-      const nextImg = currentImageElements[nextIdx];
-      
-      if (currentImg && nextImg) {
-        // Preload the image after next for smooth cycling
-        preloadNextImage(nextIdx);
-        
-        // Fade out current
-        currentImg.classList.remove("active");
-        currentImg.style.opacity = "0";
-        
-        // Fade in next
-        nextImg.classList.add("active");
-        nextImg.style.opacity = "1";
-        
-        // Update index
-        currentHeroIdx = nextIdx;
-      }
-    }, 4800);
-  }
-  
-  // Try local images first, fallback to Unsplash if needed
-  tryLocalImages((hasValidLocal) => {
-    if (hasValidLocal) {
-      const localUrls = localFileList.map(f => `images/${f}`);
-      initHeroWithImages(localUrls);
-    } else {
-      initHeroWithImages(fallbackImages);
-    }
-  });
-  
-  // ========== 2. TESTIMONIALS SLIDER (enhanced with dots) ==========
-  const testimonialCards = Array.from(document.querySelectorAll(".testimonial-card"));
-  const dotsContainer = document.querySelector(".testimonial-dots");
-  let currentTestimonial = 0;
-  let testimonialInterval;
-  
-  function updateTestimonials(index) {
-    if (!testimonialCards.length) return;
-    testimonialCards.forEach((card, i) => {
-      if (i === index) {
-        card.classList.add("active");
-      } else {
-        card.classList.remove("active");
-      }
-    });
-    if (dotsContainer) {
-      const dotList = dotsContainer.querySelectorAll(".dot");
-      dotList.forEach((dot, i) => {
-        if (i === index) {
-          dot.classList.add("active-dot");
-        } else {
-          dot.classList.remove("active-dot");
-        }
-      });
-    }
-  }
-  
-  function nextTestimonial() {
-    if (!testimonialCards.length) return;
-    currentTestimonial = (currentTestimonial + 1) % testimonialCards.length;
-    updateTestimonials(currentTestimonial);
-  }
-  
-  if (testimonialCards.length && dotsContainer) {
-    dotsContainer.innerHTML = "";
-    testimonialCards.forEach((_, idx) => {
-      const dot = document.createElement("span");
-      dot.classList.add("dot");
-      if (idx === 0) dot.classList.add("active-dot");
-      dot.addEventListener("click", () => {
-        if (testimonialInterval) clearInterval(testimonialInterval);
-        currentTestimonial = idx;
-        updateTestimonials(currentTestimonial);
-        testimonialInterval = setInterval(nextTestimonial, 5200);
-      });
-      dotsContainer.appendChild(dot);
-    });
-  }
-  
-  if (testimonialCards.length) {
-    updateTestimonials(0);
-    testimonialInterval = setInterval(nextTestimonial, 5200);
-  }
-  
-  // Safety fallback: if images fail to load, ensure something shows
-  setTimeout(() => {
-    const slidesContainer = heroContainer;
-    if (slidesContainer && slidesContainer.querySelectorAll(".slide-img").length === 0) {
-      initHeroWithImages(fallbackImages);
-    } else {
-      const allImgs = slidesContainer.querySelectorAll(".slide-img");
-      let visibleCount = 0;
-      allImgs.forEach(img => { if (img.complete && img.naturalWidth > 0) visibleCount++; });
-      if (visibleCount === 0 && allImgs.length > 0) {
-        initHeroWithImages(fallbackImages);
-      } else if (allImgs.length === 0) {
-        initHeroWithImages(fallbackImages);
-      }
-    }
-  }, 1200);
-  
-  // Logo fallback handling
-  const logoImg = document.querySelector("nav img");
-  if (logoImg && logoImg.complete && logoImg.naturalWidth === 0) {
-    const fallbackSpan = document.createElement("span");
-    fallbackSpan.innerText = "🐘 ROFO LEGEND";
-    fallbackSpan.style.color = "#FFD700";
-    fallbackSpan.style.fontWeight = "bold";
-    fallbackSpan.style.fontSize = "1.3rem";
-    fallbackSpan.style.marginLeft = "10px";
-    logoImg.parentNode?.appendChild(fallbackSpan);
-  }
-  
-  // Ensure hero text is clickable and above slider
-  const styleFix = document.createElement("style");
-  styleFix.textContent = `.slide-img { transition: opacity 0.6s ease-in-out; } .hero-text { pointer-events: auto; }`;
-  document.head.appendChild(styleFix);
-  
-  if (testimonialCards.length && !testimonialCards[0].classList.contains("active")) {
-    testimonialCards[0].classList.add("active");
-  }
-})();
+  img.onerror=tryLoad;
+  tryLoad();
+  container.appendChild(img);
+  slides.push(img);
+
+  // Create dots
+  const dot = document.createElement("div");
+  dot.className="dot";
+  dot.addEventListener("click",()=>{goToSlide(i-1)});
+  dotsContainer.appendChild(dot);
+}
+
+// Activate first slide & dot
+setTimeout(()=>{
+  if(slides.length){slides[0].classList.add("active");dotsContainer.children[0].classList.add("active");}
+},500);
+
+// Slider functions
+function goToSlide(idx){
+  slides[current].classList.remove("active");
+  dotsContainer.children[current].classList.remove("active");
+  current=idx;
+  slides[current].classList.add("active");
+  dotsContainer.children[current].classList.add("active");
+}
+
+function nextSlide(){
+  goToSlide((current+1)%slides.length);
+}
+
+// Arrows
+document.querySelector(".arrow-left").addEventListener("click",()=>{goToSlide((current-1+slides.length)%slides.length);});
+document.querySelector(".arrow-right").addEventListener("click",nextSlide);
+
+// Auto slide
+setInterval(nextSlide,4000);
+
+// TESTIMONIALS
+let t=0;
+const testimonials=document.querySelectorAll(".testimonial");
+setInterval(()=>{
+  testimonials[t].classList.remove("active");
+  t=(t+1)%testimonials.length;
+  testimonials[t].classList.add("active");
+},5000);
 </script>
+
 </body>
 </html>
