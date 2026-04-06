@@ -20,7 +20,7 @@ a { text-decoration:none; }
 
 /* NAVBAR */
 nav {
-    background:#014201;
+    background:#111827;
     color:white;
     padding:15px 30px;
     display:flex;
@@ -93,20 +93,30 @@ nav ul li a.active {
     display:flex;
     flex-direction:column;
     justify-content:space-between;
+    align-items:center;
 }
 .package-card:hover {
     transform:translateY(-8px);
     box-shadow:0 12px 25px rgba(0,0,0,0.2);
 }
+.package-card img {
+    width:80px;
+    height:80px;
+    object-fit:contain;
+    margin-bottom:15px;
+    border-radius:12px;
+}
 .package-content h3 {
     margin-bottom:12px;
     font-size:1.3rem;
     color:#34d399;
+    text-align:center;
 }
 .package-content p {
     margin-bottom:15px;
     font-size:0.95rem;
     color:#555;
+    text-align:center;
 }
 .package-price {
     font-weight:bold;
@@ -139,7 +149,7 @@ nav ul li a.active {
 
 <!-- NAVIGATION -->
 <nav>
-<h2><img src="ROFO LEGEND TOURS.jpeg" alt="ROFO LEGEND"></h2>
+<h2><img src="ROFO LEGEND TOURS.jpeg" alt="ROFO LEGEND Logo">ROFO LEGEND</h2>
 <ul>
 <li><a href="index.html">Home</a></li>
 <li><a href="about.html">About</a></li>
@@ -237,11 +247,21 @@ nav ul li a.active {
 </div>
 </div>
 
+<!-- IBAMBA RESTAURANT -->
+<div class="package-card">
+<img src="IBAMBA.JPEG" alt="IBAMBA Restaurant Logo">
+<div class="package-content">
+<h3>IBAMBA RESTAURANT</h3>
+<p>Delight in both local and international dishes crafted to perfection. Experience flavors that will keep you coming back!</p>
+<a href="https://rayictcentre.github.io/IBAMBA" target="_blank" class="btn">Visit IBAMBA</a>
+</div>
+</div>
+
 </div>
 </section>
 
 <!-- FOOTER -->
-<footer style="background-color:#082c01; color:white; text-align:center; padding:20px;">
+<footer style="background-color:#111827; color:white; text-align:center; padding:20px;">
 <p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda</p>
 </footer>
 
