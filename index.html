@@ -3,64 +3,235 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luxury Uganda Safaris | ROFO LEGEND Tours</title>
-<meta name="description" content="Luxury and affordable Uganda safaris, gorilla trekking and wildlife adventures.">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script defer src="main.js"></script>
+<title>ROFO LEGEND Tours</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',sans-serif;background:#f4f7f2;color:#222;}
+
+/* NAVBAR */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 30px;
+  background:#012a01;
+}
+nav h2 img{
+  height:50px;
+}
+nav ul{display:flex;gap:22px;list-style:none;}
+nav ul li a{color:gold;text-decoration:none;font-weight:500;transition:0.2s;}
+nav ul li a:hover{color:#fff;border-bottom:2px solid gold;}
+
+/* HERO */
+.hero{position:relative;height:80vh;overflow:hidden;display:flex;justify-content:center;align-items:center;}
+.slides{width:100%;height:100%;position:relative; background-color:#f4f7f2;}
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:contain; /* ensures full image visibility */
+  object-position:center; /* center the image */
+  opacity:0;
+  transition:opacity 1s ease;
+  background-color:#ade4fd; /* fill empty space */
+}
+.slide.active{opacity:1;}
+
+/* ARROWS */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,30,0,0.5);
+  color:gold;
+  font-size:2rem;
+  padding:8px 12px;
+  cursor:pointer;
+  border-radius:6px;
+  user-select:none;
+  transition:background 0.3s;
+  z-index:10;
+}
+.arrow:hover{background:rgba(0,30,0,0.8);}
+.arrow-left{left:20px;}
+.arrow-right{right:20px;}
+
+/* DOTS */
+.dots-container{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+  z-index:10;
+}
+.dot{
+  width:12px;height:12px;
+  background:rgba(255,215,0,0.5);
+  border-radius:50%;
+  cursor:pointer;
+  transition:all 0.3s;
+}
+.dot.active{width:16px;height:16px;background:gold;}
+
+/* HERO TEXT */
+.hero-text{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,30,0,0.75);
+  color:gold;
+  padding:18px 28px;
+  border-radius:12px;
+  backdrop-filter:blur(6px);
+  text-align:center;
+}
+.hero-text h1{font-size:28px;margin-bottom:10px;}
+.btn{display:inline-block;margin-top:10px;padding:8px 18px;background:gold;color:black;border-radius:20px;text-decoration:none;font-weight:bold;}
+
+/* TESTIMONIALS */
+.section{padding:35px 20px;text-align:center;}
+.testimonial-box{background:white;padding:18px;border-radius:12px;max-width:600px;margin:10px auto;box-shadow:0 8px 20px rgba(0,0,0,0.08);}
+.testimonial{display:none;font-style:italic;}
+.testimonial.active{display:block;}
+
+/* FOOTER */
+footer{background:#012a01;color:gold;text-align:center;padding:18px;}
+
+/* RESPONSIVE */
+@media(max-width:768px){.hero-text h1{font-size:22px;}.btn{padding:6px 14px;font-size:0.9rem;} }
+@media(max-width:480px){.hero{height:60vh;}.hero-text{padding:14px 20px;}.hero-text h1{font-size:18px;} }
+</style>
 </head>
 <body>
 
-<!-- Navigation -->
+<!-- NAVIGATION -->
 <nav>
-  <h2>ROFO LEGEND</h2>
+  <h2><img src="ROFO LEGEND TOURS.jpeg" alt="ROFO LEGEND Logo"></h2>
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
-  
+    <li><a href="experiences.html">Experiences</a></li>
     <li><a href="packages.html">Packages</a></li>
     <li><a href="blog.html">Journal</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
 
-<!-- Hero Slider -->
-<section class="hero-slider">
-  <div class="slides">
-    <!-- 17 images will load dynamically -->
-  </div>
+<!-- HERO SLIDER -->
+<section class="hero">
+  <div class="slides"></div>
+  <div class="arrow arrow-left">&#10094;</div>
+  <div class="arrow arrow-right">&#10095;</div>
+  <div class="dots-container"></div>
+
   <div class="hero-text">
-    <h1>Luxury Uganda Safari Experiences</h1>
-    <p>Private gorilla trekking, bespoke wildlife safaris and curated East African adventures.</p>
+    <h1>Rofo Legend Tours</h1>
+    <p>Gorilla trekking • Wildlife • Culture</p>
     <a href="packages.html" class="btn">Explore Packages</a>
   </div>
 </section>
 
-<!-- Testimonials -->
+<!-- TESTIMONIALS -->
 <section class="section">
-  <h2>Client Testimonials</h2>
-
-  <div class="testimonial card">
-    <p>"Absolutely world-class safari planning and execution."</p>
-    <strong>- Emma, UK</strong>
+  <h2>Testimonials</h2>
+  <div class="testimonial-box">
+    <div class="testimonial active">“Best safari experience ever!”</div>
+    <div class="testimonial">“The gorilla trekking was unforgettable.”</div>
+    <div class="testimonial">“Professional team and seamless planning.”</div>
   </div>
-
-  <div class="testimonial card">
-    <p>"The gorilla trek was unforgettable. Professional team."</p>
-    <strong>- James, USA</strong>
-  </div>
-
-  <div class="testimonial card">
-    <p>"Best tour company in Uganda hands down."</p>
-    <strong>- Maria, Germany</strong>
-  </div>
-
 </section>
 
-<!-- Footer -->
-<footer>
-<p>© 2026 ROFO LEGEND Tours & Travels | Kampala, Uganda</p>
-</footer>
+<footer>© 2026 ROFO LEGEND Tours</footer>
+
+<script>
+window.onload = function() {
+  const container = document.querySelector('.slides');
+  const dotsContainer = document.querySelector('.dots-container');
+  const slides = [];
+  const totalSlides = 23;
+  const extensions = ['jpeg', 'jpg'];
+
+  function createImage(i) {
+    const img = document.createElement('img');
+    img.alt = `Slide ${i}`;
+    img.className = 'slide';
+    let loaded = false;
+
+    function tryExtension(index) {
+      if (index >= extensions.length) {
+        console.log('Image not found:', i);
+        return;
+      }
+      img.src = `${i}.${extensions[index]}`;
+      img.onerror = () => tryExtension(index + 1);
+      img.onload = () => {
+        if (!loaded) {
+          loaded = true;
+          container.appendChild(img);
+          slides.push(img);
+        }
+      };
+    }
+
+    tryExtension(0);
+  }
+
+  for (let i = 1; i <= totalSlides; i++) {
+    createImage(i);
+
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    dot.addEventListener('click', () => goToSlide(i - 1));
+    dotsContainer.appendChild(dot);
+  }
+
+  // Activate slider after all images are loaded
+  let checkLoaded = setInterval(() => {
+    if (slides.length === totalSlides) {
+      clearInterval(checkLoaded);
+      slides[0].classList.add('active');
+      dotsContainer.children[0].classList.add('active');
+
+      let current = 0;
+
+      function goToSlide(i) {
+        slides[current].classList.remove('active');
+        dotsContainer.children[current].classList.remove('active');
+        current = i;
+        slides[current].classList.add('active');
+        dotsContainer.children[current].classList.add('active');
+      }
+
+      function nextSlide() {
+        goToSlide((current + 1) % slides.length);
+      }
+
+      // Arrows
+      document.querySelector('.arrow-left').addEventListener('click', () => {
+        goToSlide((current - 1 + slides.length) % slides.length);
+      });
+      document.querySelector('.arrow-right').addEventListener('click', nextSlide);
+
+      // Auto slide every 4s
+      setInterval(nextSlide, 4000);
+
+      // Testimonials
+      let t = 0;
+      const testimonials = document.querySelectorAll('.testimonial');
+      setInterval(() => {
+        testimonials[t].classList.remove('active');
+        t = (t + 1) % testimonials.length;
+        testimonials[t].classList.add('active');
+      }, 5000);
+    }
+  }, 100);
+};
+</script>
 
 </body>
 </html>
