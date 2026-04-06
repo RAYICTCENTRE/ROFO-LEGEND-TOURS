@@ -26,8 +26,17 @@ nav ul li a:hover{color:#fff;border-bottom:2px solid gold;}
 
 /* HERO */
 .hero{position:relative;height:80vh;overflow:hidden;display:flex;justify-content:center;align-items:center;}
-.slides{width:100%;height:100%;position:relative;}
-.slide{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease;}
+.slides{width:100%;height:100%;position:relative; background-color:#f4f7f2;}
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:contain; /* ensures full image visibility */
+  object-position:center; /* center the image */
+  opacity:0;
+  transition:opacity 1s ease;
+  background-color:#ade4fd; /* fill empty space */
+}
 .slide.active{opacity:1;}
 
 /* ARROWS */
@@ -143,60 +152,84 @@ footer{background:#012a01;color:gold;text-align:center;padding:18px;}
 window.onload = function() {
   const container = document.querySelector('.slides');
   const dotsContainer = document.querySelector('.dots-container');
-
-  // Load only 1.JPEG to 9.JPEG
   const slides = [];
-  const totalSlides = 9;
+  const totalSlides = 23;
+  const extensions = ['jpeg', 'jpg'];
 
-  for(let i=1; i<=totalSlides; i++){
+  function createImage(i) {
     const img = document.createElement('img');
-    img.src = `${i}.jpeg`;
     img.alt = `Slide ${i}`;
     img.className = 'slide';
-    container.appendChild(img);
-    slides.push(img);
+    let loaded = false;
+
+    function tryExtension(index) {
+      if (index >= extensions.length) {
+        console.log('Image not found:', i);
+        return;
+      }
+      img.src = `${i}.${extensions[index]}`;
+      img.onerror = () => tryExtension(index + 1);
+      img.onload = () => {
+        if (!loaded) {
+          loaded = true;
+          container.appendChild(img);
+          slides.push(img);
+        }
+      };
+    }
+
+    tryExtension(0);
+  }
+
+  for (let i = 1; i <= totalSlides; i++) {
+    createImage(i);
 
     const dot = document.createElement('div');
     dot.className = 'dot';
-    dot.addEventListener('click', ()=>goToSlide(i-1));
+    dot.addEventListener('click', () => goToSlide(i - 1));
     dotsContainer.appendChild(dot);
   }
 
-  // Activate first slide
-  slides[0].classList.add('active');
-  dotsContainer.children[0].classList.add('active');
+  // Activate slider after all images are loaded
+  let checkLoaded = setInterval(() => {
+    if (slides.length === totalSlides) {
+      clearInterval(checkLoaded);
+      slides[0].classList.add('active');
+      dotsContainer.children[0].classList.add('active');
 
-  let current = 0;
+      let current = 0;
 
-  function goToSlide(i){
-    slides[current].classList.remove('active');
-    dotsContainer.children[current].classList.remove('active');
-    current = i;
-    slides[current].classList.add('active');
-    dotsContainer.children[current].classList.add('active');
-  }
+      function goToSlide(i) {
+        slides[current].classList.remove('active');
+        dotsContainer.children[current].classList.remove('active');
+        current = i;
+        slides[current].classList.add('active');
+        dotsContainer.children[current].classList.add('active');
+      }
 
-  function nextSlide(){
-    goToSlide((current+1)%slides.length);
-  }
+      function nextSlide() {
+        goToSlide((current + 1) % slides.length);
+      }
 
-  // Arrows
-  document.querySelector('.arrow-left').addEventListener('click', ()=>{
-    goToSlide((current-1+slides.length)%slides.length);
-  });
-  document.querySelector('.arrow-right').addEventListener('click', nextSlide);
+      // Arrows
+      document.querySelector('.arrow-left').addEventListener('click', () => {
+        goToSlide((current - 1 + slides.length) % slides.length);
+      });
+      document.querySelector('.arrow-right').addEventListener('click', nextSlide);
 
-  // Auto slide every 4s
-  setInterval(nextSlide,4000);
+      // Auto slide every 4s
+      setInterval(nextSlide, 4000);
 
-  // Testimonials
-  let t=0;
-  const testimonials=document.querySelectorAll('.testimonial');
-  setInterval(()=>{
-    testimonials[t].classList.remove('active');
-    t=(t+1)%testimonials.length;
-    testimonials[t].classList.add('active');
-  },5000);
+      // Testimonials
+      let t = 0;
+      const testimonials = document.querySelectorAll('.testimonial');
+      setInterval(() => {
+        testimonials[t].classList.remove('active');
+        t = (t + 1) % testimonials.length;
+        testimonials[t].classList.add('active');
+      }, 5000);
+    }
+  }, 100);
 };
 </script>
 
